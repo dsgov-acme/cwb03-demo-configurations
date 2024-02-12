@@ -1,0 +1,43 @@
+key: MTARide
+name: MTA Ride
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: driverId
+    type: String
+    attributeConfigurations: []
+  - name: routeId
+    type: String
+    attributeConfigurations: []
+  - name: providerId
+    type: String
+    attributeConfigurations: []
+  - name: brokerEligible
+    type: Boolean
+    attributeConfigurations: []
+  - name: duration
+    type: String
+    attributeConfigurations: []
+  - name: tripMiles
+    type: BigDecimal
+    attributeConfigurations: []
+  - name: status
+    type: String
+    attributeConfigurations: []
+  - name: loadTime
+    type: LocalDate
+    attributeConfigurations: []
+  - name: unloadTime
+    type: LocalDate
+    attributeConfigurations: []
+  - name: reservations
+    type: List
+    entitySchema: MTAReservation
+    contentType: DynamicEntity
+    attributeConfigurations: []
+  - name: conversations
+    type: List
+    entitySchema: MTAConversation
+    contentType: DynamicEntity
+    attributeConfigurations: []

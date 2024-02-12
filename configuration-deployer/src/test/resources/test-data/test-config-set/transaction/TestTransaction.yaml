@@ -1,0 +1,8 @@
+key: TestTransaction
+name: Test Transaction
+category: test
+processDefinitionKey: TestProcess
+schemaKey: SimpleSchema
+defaultStatus: draft
+defaultFormConfigurationKey: Default
+formConfigurationSelectionRules: []

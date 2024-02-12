@@ -1,0 +1,68 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "driverId",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "routeId",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "providerId",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "brokerEligible",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "duration",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "tripMiles",
+      "type": "BigDecimal"
+    },
+    {
+      "constraints": [],
+      "name": "status",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "loadTime",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "unloadTime",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "rideRequests",
+      "type": "List",
+      "entitySchema": "MTAReservation",
+      "contentType": "DynamicEntity"
+    },
+    {
+      "constraints": [],
+      "name": "conversations",
+      "type": "List",
+      "entitySchema": "MTAConversation",
+      "contentType": "DynamicEntity"
+    }
+  ]
+}

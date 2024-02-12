@@ -1,0 +1,36 @@
+key: CommonPersonalInformation
+name: Common personal information
+attributes:
+  - name: firstName
+    type: String
+    attributeConfigurations: []
+  - name: middleName
+    type: String
+    attributeConfigurations: []
+  - name: lastName
+    type: String
+    attributeConfigurations: []
+  - name: dateOfBirth
+    type: LocalDate
+    attributeConfigurations: []
+  - name: email
+    type: String
+    attributeConfigurations: []
+  - name: phone
+    type: String
+    attributeConfigurations: []
+  - name: currentAddress
+    type: DynamicEntity
+    entitySchema: CommonAddress
+    attributeConfigurations: []
+  - name: isMailingAddressDifferent
+    type: Boolean
+    attributeConfigurations: []
+  - name: mailingAddress
+    type: DynamicEntity
+    entitySchema: CommonAddress
+    attributeConfigurations: []
+computedAttributes:
+  - name: fullName
+    type: String
+    expression: "#concat(\" \", firstName, lastName)"

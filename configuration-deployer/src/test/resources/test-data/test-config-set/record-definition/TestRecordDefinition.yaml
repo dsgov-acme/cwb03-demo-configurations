@@ -1,0 +1,6 @@
+description: Test Record Definition description.
+expirationDuration: P99Y99D
+key: TestRecordDefinition
+name: Test Record Definition
+recordFormConfigurationSelectionRules: []
+schemaKey: SimpleSchema

@@ -1,0 +1,44 @@
+key: MTARoute
+name: MTA Route
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: driver
+    type: DynamicEntity
+    entitySchema: MTADriver
+    attributeConfigurations: []
+  - name: externalRouteId
+    type: String
+    attributeConfigurations: []
+  - name: providerId
+    type: String
+    attributeConfigurations: []
+  - name: brokerEligible
+    type: Boolean
+    attributeConfigurations: []
+  - name: duration
+    type: String
+    attributeConfigurations: []
+  - name: tripMiles
+    type: BigDecimal
+    attributeConfigurations: []
+  - name: loadTime
+    type: LocalDate
+    attributeConfigurations: []
+  - name: unloadTime
+    type: LocalDate
+    attributeConfigurations: []
+  - name: initialPickLocation
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: [ ]
+  - name: finalDropLocation
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: [ ]
+  - name: rideRequests
+    type: List
+    entitySchema: MTAReservation
+    contentType: DynamicEntity
+    attributeConfigurations: []

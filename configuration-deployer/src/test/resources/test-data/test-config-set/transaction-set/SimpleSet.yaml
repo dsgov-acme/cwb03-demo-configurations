@@ -1,0 +1,15 @@
+key: TestSet
+workflow: TestWorkflow
+dashboardConfiguration:
+  dashboardLabel: TestDashboard
+  menuIcon: TestIcon
+  columns:
+    - columnLabel: TestColumn
+      attributePath: column
+      sortable: true
+      displayFormat: DATE
+  tabs:
+    - tabLabel: TestTab
+      filter:
+        key: "key"
+        value: "value"

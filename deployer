@@ -1,0 +1,8 @@
+#!/bin/sh
+args="$@"
+
+set -e option
+
+./gradlew shadowJar > /dev/null
+
+java -jar configuration-deployer/build/libs/configuration-deployer.jar $args

@@ -1,0 +1,546 @@
+name: MTA Reservation
+key: MTAReservation
+schemaKey: MTAReservation
+transactionDefinitionKey: MTAReservation
+configurationSchema: formio
+configuration:
+  components:
+  - key: identification
+    type: panel
+    input: true
+    props:
+      label: Identification
+    title: Identification
+    components:
+      - key: rider.firstName
+        type: nuverialTextInput
+        input: true
+        props:
+          type: text
+          label: First Name
+          required: true
+          autocomplete: given-name
+        className: flex-half
+      - key: rider.lastName
+        type: nuverialTextInput
+        input: true
+        props:
+          type: text
+          label: Last Name
+          autocomplete: family-name
+        className: flex-half
+      - key: rider.phone
+        type: nuverialTextInput
+        input: true
+        props:
+          type: text
+          label: Phone
+          autocomplete: tel
+        className: flex-half
+      - key: rider.email
+        type: nuverialTextInput
+        input: true
+        props:
+          type: email
+          label: Email
+          required: true
+          autocomplete: email
+        className: flex-half
+        validators:
+          validation:
+            - email
+      - key: rider.pcaRequired
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Personal Care Assistant Required
+          answers:
+            - title: 'Yes'
+              value: 'true'
+            - title: 'No'
+              value: 'false'
+          colorTheme: primary
+        className: flex-half
+      - key: rider.pcaName
+        type: nuverialTextInput
+        input: true
+        props:
+          type: text
+          label: Personal Care Assistant Name
+        className: flex-half
+        expressions:
+          hide: rider.pcaRequired !== 'true'
+      - key: rider.serviceAnimalRequired
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Service Animal Required
+          answers:
+            - title: 'Yes'
+              value: 'true'
+            - title: 'No'
+              value: 'false'
+          colorTheme: primary
+        className: flex-half
+      - key: rider.wcSeats
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Wheelchair Access Required
+          answers:
+            - title: 'Yes'
+              value: 'true'
+            - title: 'No'
+              value: 'false'
+          colorTheme: primary
+        className: flex-half
+  - key: page2
+    type: panel
+    input: true
+    props:
+      label: Schedule a Ride
+    title: Schedule a Ride
+    components:
+      - key: tripType
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Trip Type
+          answers:
+            - title: One-Way
+              value: ONE_WAY
+            - title: Round-Trip
+              value: ROUND_TRIP
+          colorTheme: primary
+        className: flex-half
+      - key: requestedDate
+        type: nuverialDatePicker
+        input: true
+        props:
+          label: Requested Date
+          startView: month
+          colorTheme: primary
+          validationType: absolute
+        className: flex-half
+      - key: nuverialTextContent
+        type: nuverialTextContent
+        input: false
+        props:
+          content: "<p>Note: Promise times can also be determine by drop-off times. Select
+          your preference below:</p>"
+        className: flex-full
+      - key: requestedTime
+        type: nuverialTextInput
+        input: true
+        props:
+          type: text
+          label: Time
+          pattern: "([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"
+          maxLength: 5
+          minLength: 3
+          placeholder: '14:15'
+        className: flex-half
+      - key: pickLocation.locationType
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Pick-Up Location
+          answers:
+            - title: Enter Address
+              value: CUSTOM_LOCATION
+            - title: Saved Location
+              value: SAVED_LOCATION
+          colorTheme: primary
+        className: flex-half
+      - key: address
+        type: nuverialAddress
+        input: true
+        props:
+          label: Address
+        className: flex-full
+        components:
+          - key: pickLocation.address.addressLine1
+            input: true
+            props:
+              label: Address Line 1
+              required: true
+              componentId: addressLine1
+          - key: pickLocation.address.addressLine2
+            input: true
+            props:
+              label: Address Line 2 (optional)
+              componentId: addressLine2
+          - key: pickLocation.address.city
+            input: true
+            props:
+              label: City
+              required: true
+              componentId: city
+          - key: pickLocation.address.stateCode
+            input: true
+            props:
+              label: State
+              required: true
+              componentId: stateCode
+              selectOptions:
+                - key: AL
+                  displayTextValue: Alabama
+                - key: AK
+                  displayTextValue: Alaska
+                - key: AS
+                  displayTextValue: American Samoa
+                - key: AZ
+                  displayTextValue: Arizona
+                - key: AR
+                  displayTextValue: Arkansas
+                - key: CA
+                  displayTextValue: California
+                - key: CO
+                  displayTextValue: Colorado
+                - key: CT
+                  displayTextValue: Connecticut
+                - key: DE
+                  displayTextValue: Delaware
+                - key: DC
+                  displayTextValue: District Of Columbia
+                - key: FM
+                  displayTextValue: Federated States Of Micronesia
+                - key: FL
+                  displayTextValue: Florida
+                - key: GA
+                  displayTextValue: Georgia
+                - key: GU
+                  displayTextValue: Guam
+                - key: HI
+                  displayTextValue: Hawaii
+                - key: ID
+                  displayTextValue: Idaho
+                - key: IL
+                  displayTextValue: Illinois
+                - key: IN
+                  displayTextValue: Indiana
+                - key: IA
+                  displayTextValue: Iowa
+                - key: KS
+                  displayTextValue: Kansas
+                - key: KY
+                  displayTextValue: Kentucky
+                - key: LA
+                  displayTextValue: Louisiana
+                - key: ME
+                  displayTextValue: Maine
+                - key: MH
+                  displayTextValue: Marshall Islands
+                - key: MD
+                  displayTextValue: Maryland
+                - key: MA
+                  displayTextValue: Massachusetts
+                - key: MI
+                  displayTextValue: Michigan
+                - key: MN
+                  displayTextValue: Minnesota
+                - key: MS
+                  displayTextValue: Mississippi
+                - key: MO
+                  displayTextValue: Missouri
+                - key: MT
+                  displayTextValue: Montana
+                - key: NE
+                  displayTextValue: Nebraska
+                - key: NV
+                  displayTextValue: Nevada
+                - key: NH
+                  displayTextValue: New Hampshire
+                - key: NJ
+                  displayTextValue: New Jersey
+                - key: NM
+                  displayTextValue: New Mexico
+                - key: NY
+                  displayTextValue: New York
+                - key: NC
+                  displayTextValue: North Carolina
+                - key: ND
+                  displayTextValue: North Dakota
+                - key: MP
+                  displayTextValue: Northern Mariana Islands
+                - key: OH
+                  displayTextValue: Ohio
+                - key: OK
+                  displayTextValue: Oklahoma
+                - key: OR
+                  displayTextValue: Oregon
+                - key: PW
+                  displayTextValue: Palau
+                - key: PA
+                  displayTextValue: Pennsylvania
+                - key: PR
+                  displayTextValue: Puerto Rico
+                - key: RI
+                  displayTextValue: Rhode Island
+                - key: SC
+                  displayTextValue: South Carolina
+                - key: SD
+                  displayTextValue: South Dakota
+                - key: TN
+                  displayTextValue: Tennessee
+                - key: TX
+                  displayTextValue: Texas
+                - key: UT
+                  displayTextValue: Utah
+                - key: VT
+                  displayTextValue: Vermont
+                - key: VI
+                  displayTextValue: Virgin Islands
+                - key: VA
+                  displayTextValue: Virginia
+                - key: WA
+                  displayTextValue: Washington
+                - key: WV
+                  displayTextValue: West Virginia
+                - key: WI
+                  displayTextValue: Wisconsin
+                - key: WY
+                  displayTextValue: Wyoming
+          - key: pickLocation.address.postalCode
+            input: true
+            props:
+              label: Zip Code
+              required: true
+              componentId: postalCode
+          - key: pickLocation.address.postalCodeExtension
+            input: true
+            props:
+              label: Ext. (Optional)
+              componentId: postalCodeExtension
+          - key: pickLocation.address.countryCode
+            input: true
+            props:
+              label: Country
+              required: true
+              componentId: countryCode
+              selectOptions:
+                - key: US
+                  displayTextValue: United States
+                - key: CA
+                  displayTextValue: Canada
+                - key: MX
+                  displayTextValue: Mexico
+        expressions:
+          hide: pickLocation?.locationType !== 'CUSTOM_LOCATION'
+      - key: pickLocation.name
+        type: nuverialSelect
+        input: true
+        props:
+          label: Saved Location
+          colorTheme: primary
+          selectOptions:
+            - key: test
+              displayTextValue: Test
+        className: flex-half
+        expressions:
+          hide: pickLocation?.locationType !== 'SAVED_LOCATION'
+      - key: dropLocation.locationType
+        type: nuverialRadioCards
+        input: true
+        props:
+          cols: 2
+          label: Drop-Off Location
+          answers:
+            - title: Enter Address
+              value: CUSTOM_LOCATION
+            - title: Saved Location
+              value: SAVED_LOCATION
+          colorTheme: primary
+        className: flex-half
+      - key: address1
+        type: nuverialAddress
+        input: true
+        props:
+          label: Drop-Off Address
+        className: flex-full
+        components:
+          - key: dropLocation.address.addressLine1
+            input: true
+            props:
+              label: Address Line 1
+              required: true
+              componentId: addressLine1
+          - key: dropLocation.address.addressLine2
+            input: true
+            props:
+              label: Address Line 2 (optional)
+              componentId: addressLine2
+          - key: dropLocation.address.city
+            input: true
+            props:
+              label: City
+              required: true
+              componentId: city
+          - key: dropLocation.address.stateCode
+            input: true
+            props:
+              label: State
+              required: true
+              componentId: stateCode
+              selectOptions:
+                - key: AL
+                  displayTextValue: Alabama
+                - key: AK
+                  displayTextValue: Alaska
+                - key: AS
+                  displayTextValue: American Samoa
+                - key: AZ
+                  displayTextValue: Arizona
+                - key: AR
+                  displayTextValue: Arkansas
+                - key: CA
+                  displayTextValue: California
+                - key: CO
+                  displayTextValue: Colorado
+                - key: CT
+                  displayTextValue: Connecticut
+                - key: DE
+                  displayTextValue: Delaware
+                - key: DC
+                  displayTextValue: District Of Columbia
+                - key: FM
+                  displayTextValue: Federated States Of Micronesia
+                - key: FL
+                  displayTextValue: Florida
+                - key: GA
+                  displayTextValue: Georgia
+                - key: GU
+                  displayTextValue: Guam
+                - key: HI
+                  displayTextValue: Hawaii
+                - key: ID
+                  displayTextValue: Idaho
+                - key: IL
+                  displayTextValue: Illinois
+                - key: IN
+                  displayTextValue: Indiana
+                - key: IA
+                  displayTextValue: Iowa
+                - key: KS
+                  displayTextValue: Kansas
+                - key: KY
+                  displayTextValue: Kentucky
+                - key: LA
+                  displayTextValue: Louisiana
+                - key: ME
+                  displayTextValue: Maine
+                - key: MH
+                  displayTextValue: Marshall Islands
+                - key: MD
+                  displayTextValue: Maryland
+                - key: MA
+                  displayTextValue: Massachusetts
+                - key: MI
+                  displayTextValue: Michigan
+                - key: MN
+                  displayTextValue: Minnesota
+                - key: MS
+                  displayTextValue: Mississippi
+                - key: MO
+                  displayTextValue: Missouri
+                - key: MT
+                  displayTextValue: Montana
+                - key: NE
+                  displayTextValue: Nebraska
+                - key: NV
+                  displayTextValue: Nevada
+                - key: NH
+                  displayTextValue: New Hampshire
+                - key: NJ
+                  displayTextValue: New Jersey
+                - key: NM
+                  displayTextValue: New Mexico
+                - key: NY
+                  displayTextValue: New York
+                - key: NC
+                  displayTextValue: North Carolina
+                - key: ND
+                  displayTextValue: North Dakota
+                - key: MP
+                  displayTextValue: Northern Mariana Islands
+                - key: OH
+                  displayTextValue: Ohio
+                - key: OK
+                  displayTextValue: Oklahoma
+                - key: OR
+                  displayTextValue: Oregon
+                - key: PW
+                  displayTextValue: Palau
+                - key: PA
+                  displayTextValue: Pennsylvania
+                - key: PR
+                  displayTextValue: Puerto Rico
+                - key: RI
+                  displayTextValue: Rhode Island
+                - key: SC
+                  displayTextValue: South Carolina
+                - key: SD
+                  displayTextValue: South Dakota
+                - key: TN
+                  displayTextValue: Tennessee
+                - key: TX
+                  displayTextValue: Texas
+                - key: UT
+                  displayTextValue: Utah
+                - key: VT
+                  displayTextValue: Vermont
+                - key: VI
+                  displayTextValue: Virgin Islands
+                - key: VA
+                  displayTextValue: Virginia
+                - key: WA
+                  displayTextValue: Washington
+                - key: WV
+                  displayTextValue: West Virginia
+                - key: WI
+                  displayTextValue: Wisconsin
+                - key: WY
+                  displayTextValue: Wyoming
+          - key: dropLocation.address.postalCode
+            input: true
+            props:
+              label: Zip Code
+              required: true
+              componentId: postalCode
+          - key: dropLocation.address.postalCodeExtension
+            input: true
+            props:
+              label: Ext. (Optional)
+              componentId: postalCodeExtension
+          - key: dropLocation.address.countryCode
+            input: true
+            props:
+              label: Country
+              required: true
+              componentId: countryCode
+              selectOptions:
+                - key: US
+                  displayTextValue: United States
+                - key: CA
+                  displayTextValue: Canada
+                - key: MX
+                  displayTextValue: Mexico
+        expressions:
+          hide: dropLocation?.locationType !== 'CUSTOM_LOCATION'
+      - key: dropLocation.name
+        type: nuverialSelect
+        input: true
+        props:
+          label: Saved Location
+          colorTheme: primary
+          selectOptions:
+            - key: test
+              displayTextValue: Test
+        className: flex-half
+        expressions:
+          hide: dropLocation?.locationType !== 'SAVED_LOCATION'

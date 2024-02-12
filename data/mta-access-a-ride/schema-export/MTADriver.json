@@ -1,0 +1,60 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "firstName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "middleName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "lastName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "dateOfBirth",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "email",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "phone",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "currentAddress",
+      "type": "DynamicEntity",
+      "entitySchema": "CommonAddress"
+    },
+    {
+      "constraints": [],
+      "name": "licensePlate",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "licenceNumber",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "vehicleType",
+      "type": "String"
+    }
+  ]
+}

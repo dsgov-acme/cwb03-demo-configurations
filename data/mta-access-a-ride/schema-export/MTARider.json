@@ -1,0 +1,82 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "firstName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "middleName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "lastName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "dateOfBirth",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "email",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "phone",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "currentAddress",
+      "type": "DynamicEntity",
+      "entitySchema": "CommonAddress"
+    },
+    {
+      "constraints": [],
+      "name": "savedLocations",
+      "type": "List",
+      "entitySchema": "MTALocation",
+      "contentType": "DynamicEntity"
+    },
+    {
+      "constraints": [],
+      "name": "numCompanion",
+      "type": "Integer"
+    },
+    {
+      "constraints": [],
+      "name": "numPca",
+      "type": "Integer"
+    },
+    {
+      "constraints": [],
+      "name": "numServiceAnimal",
+      "type": "Integer"
+    },
+    {
+      "constraints": [],
+      "name": "ambSeats",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "wcSeats",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "wideSeats",
+      "type": "Boolean"
+    }
+  ]
+}

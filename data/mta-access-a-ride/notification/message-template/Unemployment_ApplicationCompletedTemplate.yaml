@@ -1,0 +1,84 @@
+key: Unemployment_ApplicationCompletedTemplate
+name: Unemployment Insurance Application Completed
+description: Unemployment Insurance Application Completed
+emailFormat:
+  layoutKey: StandardEmailLayout
+  content:
+    language:
+      templates:
+        en: en
+        es: es
+    title:
+      templates:
+        en: Email - Application Completed
+        es: Correo electrónico - Solicitud Completada
+    greeting:
+      templates:
+        en: 'The following communications is regarding your application with title: {{ title }}'
+        es: 'Esta comunicación es en relación a su aplicación con el título: {{ title }}'
+    main-text:
+      templates:
+        en: 'Your application has been completed. You can view and print out the results from your dashboard.'
+        es: 'Su solicitud ha sido completada. Puede ver e imprimir el resultado desde el panel de aplicaciones.'
+    bold-text:
+      templates:
+        en: 'Application for {{ process-name }}'
+        es: 'Solicitud para {{ process-name }}'
+    application-id:
+      templates:
+        en: 'Application ID: {{ application-id }}'
+        es: 'ID de la Solicitud: {{ application-id }}'
+    closing-text:
+      templates:
+        en: 'Log in to your account to reply to this request.'
+        es: 'Inicie sesión en su perfil para responder a esta solicitud.'
+    portal-url:
+      templates:
+        en: '{{portal-url}}'
+        es: '{{portal-url}}'
+    button-text:
+      templates:
+        en: 'Go to your dashboard'
+        es: 'Ir a su perfil'
+    primary-color:
+      templates:
+        en: '#1f1f1f'
+        es: '#1f1f1f'
+    theme-color-tertiary:
+      templates:
+        en: '#F76E39'
+        es: '#F76E39'
+    main-background-color:
+      templates:
+        en: '#ffffff'
+        es: '#ffffff'
+    text-color:
+      templates:
+        en: '#000000'
+        es: '#000000'
+    footer-background-color:
+      templates:
+        en: '#F9F9F9'
+        es: '#F9F9F9'
+    button-hover-color:
+      templates:
+        en: '#0c76c8'
+        es: '#0c76c8'
+    button-text-color:
+      templates:
+        en: '#ffffff'
+        es: '#ffffff'
+  subject:
+    templates:
+      en: 'Application Completed - ID: {{ application-id }}'
+      es: 'Solicitud Completada - ID: {{ application-id }}'
+smsFormat:
+  message:
+    templates:
+      en: Your Unemployment Insurance communication, {{application-id}}, has been completed
+      es: Su comunicación de Seguro de Desempleo, {{application-id}}, ha sido completada
+parameters:
+  application-id: String
+  portal-url: String
+  title: String
+  process-name: String

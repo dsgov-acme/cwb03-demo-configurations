@@ -1,0 +1,25 @@
+key: FinancialBenefitDocuments
+name: Financial Benefit Documents
+attributes:
+  - name: idFront
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+      - type: DocumentProcessor
+        processorId: docai-id-proofing
+  - name: idBack
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: proofOfResidency
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: proofOfIncome
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality

@@ -1,0 +1,83 @@
+key: Unemployment_AdditionalInformationRequestedTemplate
+name: Unemployment Insurance Application Additional Information Requested
+description: Unemployment Insurance Application Additional Information Requested
+emailFormat:
+  layoutKey: StandardEmailLayout
+  content:
+    language:
+      templates:
+        en: en
+        es: es
+    title:
+      templates:
+        en: Email-Request Additional Information
+        es: Correo electrónico-Solicitud de información adicional
+    greeting:
+      templates:
+        en: 'The following communications is regarding your application with title: {{ title }}'
+        es: 'Esta comunicación es en relación a su aplicación con el título: {{ title }}'
+    main-text:
+      templates:
+        en: 'Please respond to the request below to complete your application.'
+        es: 'Por favor responda a la solicitud presentada a continuación para completar su aplicación.'
+    bold-text:
+      templates:
+        en: 'Documents missing or corrections needed.'
+        es: 'Documentos faltantes o correcciones necesarias.'
+    application-id:
+      templates:
+        en: 'Application ID: {{ application-id }}'
+        es: 'ID de la Solicitud: {{ application-id }}'
+    closing-text:
+      templates:
+        en: 'Log in to your account to reply to this request.'
+        es: 'Inicie sesión en su perfil para responder a esta solicitud.'
+    portal-url:
+      templates:
+        en: '{{portal-url}}'
+        es: '{{portal-url}}'
+    button-text:
+      templates:
+        en: 'Log in to your account'
+        es: 'Inicie sesión en su cuenta'
+    primary-color:
+      templates:
+        en: '#1f1f1f'
+        es: '#1f1f1f'
+    theme-color-tertiary:
+      templates:
+        en: '#F76E39'
+        es: '#F76E39'
+    main-background-color:
+      templates:
+        en: '#ffffff'
+        es: '#ffffff'
+    text-color:
+      templates:
+        en: '#000000'
+        es: '#000000'
+    footer-background-color:
+      templates:
+        en: '#F9F9F9'
+        es: '#F9F9F9'
+    button-hover-color:
+      templates:
+        en: '#0c76c8'
+        es: '#0c76c8'
+    button-text-color:
+      templates:
+        en: '#ffffff'
+        es: '#ffffff'
+  subject:
+    templates:
+      en: 'Request Additional Information - ID: {{ application-id }}'
+      es: 'Solicitud de información adicional - ID: {{ application-id }}'
+smsFormat:
+  message:
+    templates:
+      en: Additional information has been requested for your Unemployment Insurance communication, {{application-id}}.
+      es: Se ha solicitado información adicional para su comunicación de Seguro de Desempleo, {{application-id}}.
+parameters:
+  application-id: String
+  portal-url: String
+  title: String

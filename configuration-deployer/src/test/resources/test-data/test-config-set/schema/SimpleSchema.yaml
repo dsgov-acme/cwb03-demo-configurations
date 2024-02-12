@@ -1,0 +1,5 @@
+key: SimpleSchema
+name: SimpleSchema
+attributes:
+  - name: data
+    type: String

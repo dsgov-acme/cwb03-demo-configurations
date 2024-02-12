@@ -1,0 +1,39 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "rideId",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "author",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "date",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "type",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "title",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "transcript",
+      "type": "String"
+    }
+  ]
+}

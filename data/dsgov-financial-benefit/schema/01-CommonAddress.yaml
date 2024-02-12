@@ -1,0 +1,24 @@
+key: CommonAddress
+name: Common address
+attributes:
+  - name: addressLine1
+    type: String
+    attributeConfigurations: []
+  - name: addressLine2
+    type: String
+    attributeConfigurations: []
+  - name: city
+    type: String
+    attributeConfigurations: []
+  - name: stateCode
+    type: String
+    attributeConfigurations: []
+  - name: postalCode
+    type: String
+    attributeConfigurations: []
+  - name: postalCodeExtension
+    type: String
+    attributeConfigurations: []
+  - name: countryCode
+    type: String
+    attributeConfigurations: []

@@ -1,0 +1,11 @@
+key: UnemploymentInsurance
+name: Unemployment Insurance
+category: application
+processDefinitionKey: UnemploymentInsuranceApplication
+schemaKey: UnemploymentInsurance
+defaultStatus: DRAFT
+defaultFormConfigurationKey: UnemploymentInsurance
+formConfigurationSelectionRules: []
+transactionDefinitionSetKey: UnemploymentInsurance
+subjectType: INDIVIDUAL
+allowedRelatedPartyTypes: [INDIVIDUAL, EMPLOYER]

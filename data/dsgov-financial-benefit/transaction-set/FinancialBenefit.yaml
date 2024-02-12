@@ -1,0 +1,58 @@
+key: FinancialBenefit
+workflow: FinancialBenefit
+constraints:
+  - path: personalInformation.fullName
+    type: String
+    contentType: null
+  - path: employmentInformation.employerName
+    type: String
+    contentType: null
+dashboardConfiguration:
+  dashboardLabel: Claims
+  menuIcon: search
+  columns:
+    - columnLabel: Priority
+      attributePath: priority
+      sortable: true
+      displayFormat: PRIORITY
+    - columnLabel: Transaction Id
+      attributePath: externalId
+      sortable: false
+      displayFormat: null
+    - columnLabel: Type
+      attributePath: transactionDefinitionName
+      sortable: false
+      displayFormat: null
+    - columnLabel: Date Created
+      attributePath: createdTimestamp
+      sortable: true
+      displayFormat: DATETIME
+    - columnLabel: Last Updated
+      attributePath: lastUpdatedTimestamp
+      sortable: true
+      displayFormat: DATETIME
+    - columnLabel: Claimant
+      attributePath: data.personalInformation.fullName
+      sortable: false
+      displayFormat: null
+    - columnLabel: Employer
+      attributePath: data.employmentInformation.employerName
+      sortable: false
+      displayFormat: null
+    - columnLabel: Assignee
+      attributePath: assignedTo
+      sortable: false
+      displayFormat: USERDATA
+  tabs:
+    - tabLabel: Review
+      filter:
+        status: Review
+    - tabLabel: Info Requested
+      filter:
+        status: Info Requested
+    - tabLabel: Approved
+      filter:
+        status: Approved
+    - tabLabel: Denied
+      filter:
+        status: Denied

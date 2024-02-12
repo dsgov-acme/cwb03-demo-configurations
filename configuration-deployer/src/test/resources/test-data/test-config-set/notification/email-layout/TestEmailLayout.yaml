@@ -1,0 +1,23 @@
+key: TestEmailLayout
+name: Template email layout
+description: Template email layout for DSGov notifications.
+content: "<html>
+  <head>
+    <title>Test Title</title>
+  </head>
+  <body>
+    <div id=\"greeting\">
+           <p>{{greeting}}</p>
+           </div>
+           <div id=\"body\">
+           <p>{{body}}</p>
+           </div>
+           <div id=\"footer\">
+           <p>{{footer}}</p>
+           </div>
+           </body>
+  </html>"
+inputs:
+  - greeting
+  - body
+  - footer

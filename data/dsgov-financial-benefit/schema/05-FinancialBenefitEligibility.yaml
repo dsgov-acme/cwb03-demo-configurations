@@ -1,0 +1,28 @@
+key: FinancialBenefitEligibility
+name: Financial Benefit Eligibility
+attributes:
+ -
+  name: annualIncomeThresholdExceeded
+  type: String
+  attributeConfigurations: []
+ -
+  name: isResidentOfNewYork
+  type: String
+  attributeConfigurations: []
+ -
+  name: filedUnemploymentInOtherStateLast365Days
+  type: String
+  attributeConfigurations: []
+ -
+  name: totalWeeksUnemployedLastYear
+  type: String
+  attributeConfigurations: []
+ -
+  name: wereAvailableToWorkInWeeksUnemployed
+  type: String
+  attributeConfigurations: []
+ -
+  name: maxMonthlyWagesInUSLastYear
+  type: String
+  attributeConfigurations: []
+computedAttributes: []

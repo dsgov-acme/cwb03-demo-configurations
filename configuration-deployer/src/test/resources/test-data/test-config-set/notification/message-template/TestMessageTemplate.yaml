@@ -1,0 +1,29 @@
+key: TestMessageTemplate
+name: Test message template
+description: Test message template
+emailFormat:
+  layoutKey: TestEmailLayout
+  content:
+    greeting:
+      templates:
+        en: Hi {{name}}
+        es: Hola {{name}}
+    body:
+      templates:
+        en: Body.
+        es: Cuerpo.
+    footer:
+      templates:
+        en: Footer.
+        es: Despedida.
+  subject:
+    templates:
+      en: Subject
+      es: Asunto
+smsFormat:
+  message:
+    templates:
+      en: SMS
+      es: SMS
+parameters:
+  name: String

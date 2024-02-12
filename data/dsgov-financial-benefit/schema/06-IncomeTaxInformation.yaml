@@ -1,0 +1,21 @@
+key: IncomeTaxInformation
+name: Income Tax Information 
+attributes:
+  - name: yearlyIncome
+    type: String
+    attributeConfigurations: []
+  - name: filedTaxes
+    type: String
+    attributeConfigurations: []
+  - name: employmentLetter
+    type: String
+    attributeConfigurations: []
+  - name: payStubs
+    type: String
+    attributeConfigurations: []
+  - name: w2Or1099
+    type: String
+    attributeConfigurations: []
+  - name: itin
+    type: String
+    attributeConfigurations: []

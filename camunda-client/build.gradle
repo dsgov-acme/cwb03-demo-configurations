@@ -1,0 +1,9 @@
+dependencies {
+    api "com.fasterxml.jackson.core:jackson-core:$jackson_version"
+    api "com.fasterxml.jackson.core:jackson-annotations:$jackson_version"
+    api "com.fasterxml.jackson.core:jackson-databind:$jackson_version"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jackson_version"
+    api "jakarta.annotation:jakarta.annotation-api:$jakarta_annotation_version"
+    api "org.apache.httpcomponents:httpclient:4.5.13"
+    api "org.apache.httpcomponents:httpmime:4.5.13"
+}

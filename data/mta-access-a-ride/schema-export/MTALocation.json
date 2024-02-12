@@ -1,0 +1,30 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "name",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "latitude",
+      "type": "BigDecimal"
+    },
+    {
+      "constraints": [],
+      "name": "longitude",
+      "type": "BigDecimal"
+    },
+    {
+      "constraints": [],
+      "name": "address",
+      "type": "DynamicEntity",
+      "entitySchema": "CommonAddress"
+    }
+  ]
+}

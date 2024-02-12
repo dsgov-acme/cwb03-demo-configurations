@@ -1,0 +1,84 @@
+key: ApplicationApprovedTemplate
+name: Financial Benefits Application Approved
+description: Financial Benefits Application Approved
+emailFormat:
+  layoutKey: StandardEmailLayout
+  content:
+    language:
+      templates:
+        en: en
+        es: es
+    title:
+      templates:
+        en: Email-Application Approved
+        es: Correo electrónico-Solicitud aprobada
+    greeting:
+      templates:
+        en: Hi {{first-name}}
+        es: Hola {{first-name}}
+    main-text:
+      templates:
+        en: "Your application has been approved. You can view and print out the license from your dashboard."
+        es: "Su solicitud ha sido aprobada. Puede ver e imprimir la licencia desde el panel de aplicaciones."
+    bold-text:
+      templates:
+        en: "Application for {{ license-name }}"
+        es: "Solicitud para {{ license-name }}"
+    application-id:
+      templates:
+        en: "Application ID: {{ application-id }}"
+        es: "ID de la Solicitud: {{ application-id }}"
+    closing-text:
+      templates:
+        en: "Log in to your account to reply to this request."
+        es: "Inicie sesión en su perfil para responder a esta solicitud."
+    portal-url:
+      templates:
+        en: "{{portal-url}}"
+        es: "{{portal-url}}"
+    button-text:
+      templates:
+        en: "Go to your dashboard"
+        es: "Ir a su perfil"
+    primary-color:
+      templates:
+        en: "#1f1f1f"
+        es: "#1f1f1f"
+    theme-color-tertiary:
+      templates:
+        en: "#F76E39"
+        es: "#F76E39"
+    main-background-color:
+      templates:
+        en: "#ffffff"
+        es: "#ffffff"
+    text-color:
+      templates:
+        en: "#000000"
+        es: "#000000"
+    footer-background-color:
+      templates:
+        en: "#F9F9F9"
+        es: "#F9F9F9"
+    button-hover-color:
+      templates:
+        en: "#0c76c8"
+        es: "#0c76c8"
+    button-text-color:
+      templates:
+        en: "#ffffff"
+        es: "#ffffff"
+  subject:
+    templates:
+      en: Application Approved
+      es: Solicitud aprobada
+smsFormat:
+  message:
+    templates:
+      en: Your financial benefits application, {{application-id}}, has been approved
+      es: Su solicitud de beneficios financieros, {{application-id}}, ha sido aprobada
+parameters:
+  application-id: String
+  portal-url: String
+  first-name: String
+  license-name: String

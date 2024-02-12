@@ -1,0 +1,13 @@
+formConfigurationKey: Other
+name: Other Form for Test Transaction
+dataSchema: SimpleSchema
+transactionDefinitionKey: TestTransaction
+configurationSchema: formio
+configuration:
+  components:
+    - key: singleStep
+      type: panel
+      label: Page 1
+      props:
+        label: The Step
+      title: The Step

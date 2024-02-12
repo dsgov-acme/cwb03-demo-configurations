@@ -1,0 +1,6 @@
+description: This is the record definition for MTA riders.
+expirationDuration: P99Y99D
+key: MTARider
+name: MTA Rider
+recordFormConfigurationSelectionRules: []
+schemaKey: MTARider

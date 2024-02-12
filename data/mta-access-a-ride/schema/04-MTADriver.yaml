@@ -1,0 +1,41 @@
+key: MTADriver
+name: MTA Driver
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: firstName
+    type: String
+    attributeConfigurations: []
+  - name: middleName
+    type: String
+    attributeConfigurations: []
+  - name: lastName
+    type: String
+    attributeConfigurations: []
+  - name: dateOfBirth
+    type: LocalDate
+    attributeConfigurations: []
+  - name: email
+    type: String
+    attributeConfigurations: []
+  - name: phone
+    type: String
+    attributeConfigurations: []
+  - name: currentAddress
+    type: DynamicEntity
+    entitySchema: CommonAddress
+    attributeConfigurations: []
+  - name: licensePlate
+    type: String
+    attributeConfigurations: []
+  - name: licenceNumber
+    type: String
+    attributeConfigurations: []
+  - name: vehicleType
+    type: String
+    attributeConfigurations: []
+computedAttributes:
+  - name: fullName
+    type: String
+    expression: "#concat(\" \", firstName, lastName)"

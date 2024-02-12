@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1dl5ey4" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.17.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:collaboration id="Collaboration_1nu4i0h">
+    <bpmn:participant id="Participant_1frsb2s" name="Application" processRef="UnemploymentInsuranceApplication" />
+  </bpmn:collaboration>
+  <bpmn:process id="UnemploymentInsuranceApplication" name="Unemployment Insurance" isExecutable="true" camunda:historyTimeToLive="18250">
+    <bpmn:documentation>For the "Employer" participant, the process begins at the start event and
+      proceeds to the "Digital Intake" user task. Once this task is finished, the application is
+      submitted and represented by the sequence flow labeled "Submit". This sequence flow ends at
+      the "Review" user task, a task performed by the "Agency" participant.
+
+      Upon reviewing the application, the agency has two options: "Complete" or "Request
+      Changes". This decision making is incorporated within the BPMN Exclusive Gateway after the
+      "Review" task. If changes are requested, it goes back to the "Employer" user and asks them to
+      "Correct Information". The sequence flow labeled "Submit Corrections" then allows the
+      corrected application to be resubmitted to the "Review" task.
+
+      If the decision is to "Complete", the process moves to the "Pending Permanent Completion" task and
+      waits for 30 minutes. If no action is taken during this time, the process ends at the "Completed"
+      final event. However, the completion can be undone, after which the application again goes to the
+      "Review".
+
+      Note that each participant has constraints specified by properties such as roles, action
+      labels, and statuses. Also, some of these tasks and sequence flows include event listeners
+      which have been encoded to specific classes and execute on certain events.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_19pcg6a">
+      <bpmn:lane id="Lane_0g1pmd1" name="Employer">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="workflow.allowed.userTypes" value="agency,public" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:flowNodeRef>digitalIntake</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>correctInformation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0k1lavn</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0lyncp3" name="Agency">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="workflow.allowed.userTypes" value="agency" />
+          </camunda:properties>
+        </bpmn:extensionElements>
+        <bpmn:flowNodeRef>review</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1dlzc3o</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0mtymk1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CompletionPending</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0ba17sq</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="review" name="Review">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:properties>
+          <camunda:property name="status" value="Review" />
+          <camunda:property name="workflow.actions" value="Complete,RequestChanges" />
+          <camunda:property name="workflow.action.Complete.label" value="Complete" />
+          <camunda:property name="workflow.action.RequestChanges.label" value="Request Changes" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0qv4bb8</bpmn:incoming>
+      <bpmn:incoming>Flow_19ny0dc</bpmn:incoming>
+      <bpmn:incoming>Flow_1lrh51g</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ls6569</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0qv4bb8" name="Submit" sourceRef="digitalIntake" targetRef="review">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionSubmitDelegate" event="take" />
+        <camunda:executionListener class="io.nuvalence.workmanager.service.camunda.delegates.SimpleTransactionAuditEventDelegate" event="take" />
+        <camunda:properties>
+          <camunda:property name="activity_event_type" value="transaction_submitted" />
+          <camunda:property name="summary" value="Transaction submitted" />
+          <camunda:property name="notification.key" value="Unemployment_ApplicationSubmittedTemplate" />
+          <camunda:property name="notification.parameter.application-id" value="externalId" />
+          <camunda:property name="notification.parameter.portal-url" value="url" />
+          <camunda:property name="notification.parameter.title" value="data.title" />
+          <camunda:property name="notification.parameter.process-name" value="transactionDefinitionKey" />
+        </camunda:properties>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.camunda.delegates.TransactionNotificationDelegate" event="take" />
+        <camunda:executionListener class="io.nuvalence.workmanager.service.camunda.delegates.FormValidationDelegate" event="take" />
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
+    <bpmn:exclusiveGateway id="Gateway_1dlzc3o">
+      <bpmn:incoming>Flow_1ls6569</bpmn:incoming>
+      <bpmn:outgoing>Flow_02m7wfj</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1bpfcx6</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_1ls6569" sourceRef="review" targetRef="Gateway_1dlzc3o" />
+    <bpmn:sequenceFlow id="Flow_02m7wfj" name="Request Changes" sourceRef="Gateway_1dlzc3o" targetRef="correctInformation">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.camunda.delegates.TransactionNotificationDelegate" event="take" />
+        <camunda:properties>
+          <camunda:property name="notification.parameter.application-id" value="externalId" />
+          <camunda:property name="notification.parameter.title" value="data.title" />
+          <camunda:property name="notification.key" value="Unemployment_AdditionalInformationRequestedTemplate" />
+          <camunda:property name="notification.parameter.portal-url" value="url" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${action == "RequestChanges"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19ny0dc" name="Submit Corrections" sourceRef="correctInformation" targetRef="review" />
+    <bpmn:userTask id="digitalIntake" name="Digital Intake">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:properties>
+          <camunda:property name="status" value="Draft" />
+          <camunda:property name="workflow.actions" value="Submit" />
+          <camunda:property name="workflow.action.Submit.label" value="Submit" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ufmd9t</bpmn:incoming>
+      <bpmn:outgoing>Flow_0qv4bb8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="correctInformation" name="Correct Information">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:properties>
+          <camunda:property name="status" value="Info Requested" />
+          <camunda:property name="workflow.actions" value="Resubmit" />
+          <camunda:property name="workflow.action.Resubmit.label" value="Re-Submit" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_02m7wfj</bpmn:incoming>
+      <bpmn:outgoing>Flow_19ny0dc</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="Event_0k1lavn">
+      <bpmn:outgoing>Flow_1ufmd9t</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ufmd9t" sourceRef="Event_0k1lavn" targetRef="digitalIntake" />
+    <bpmn:sequenceFlow id="Flow_1bpfcx6" name="Complete" sourceRef="Gateway_1dlzc3o" targetRef="CompletionPending">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="notification.parameter.title" value="data.title" />
+          <camunda:property name="notification.parameter.application-id" value="externalId" />
+          <camunda:property name="notification.key" value="Unemployment_ApplicationCompletedTemplate" />
+          <camunda:property name="notification.parameter.portal-url" value="url" />
+          <camunda:property name="notification.parameter.process-name" value="transactionDefinitionKey" />
+        </camunda:properties>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.camunda.delegates.TransactionNotificationDelegate" event="take" />
+      </bpmn:extensionElements>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${action == "Complete"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_19c9a4i" sourceRef="Event_0ba17sq" targetRef="Event_0mtymk1" />
+    <bpmn:sequenceFlow id="Flow_1lrh51g" name="Revert Completion" sourceRef="CompletionPending" targetRef="review" />
+    <bpmn:endEvent id="Event_0mtymk1" name="Completed">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionCompletedDelegate" event="start" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19c9a4i</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:userTask id="CompletionPending" name="Pending Permanent Completion">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:properties>
+          <camunda:property name="status" value="Completed" />
+          <camunda:property name="workflow.actions" value="RevertCompletion" />
+          <camunda:property name="workflow.action.RevertCompletion.label" value="Revert Completion" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1bpfcx6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lrh51g</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:boundaryEvent id="Event_0ba17sq" attachedToRef="CompletionPending">
+      <bpmn:extensionElements />
+      <bpmn:outgoing>Flow_19c9a4i</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1inkxze">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:boundaryEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1nu4i0h">
+      <bpmndi:BPMNShape id="Participant_1frsb2s_di" bpmnElement="Participant_1frsb2s" isHorizontal="true">
+        <dc:Bounds x="160" y="50" width="760" height="420" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0lyncp3_di" bpmnElement="Lane_0lyncp3" isHorizontal="true">
+        <dc:Bounds x="190" y="205" width="730" height="265" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0g1pmd1_di" bpmnElement="Lane_0g1pmd1" isHorizontal="true">
+        <dc:Bounds x="190" y="50" width="730" height="155" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vsi9sd_di" bpmnElement="review">
+        <dc:Bounds x="400" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1dlzc3o_di" bpmnElement="Gateway_1dlzc3o" isMarkerVisible="true">
+        <dc:Bounds x="555" y="285" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00gilkt_di" bpmnElement="digitalIntake">
+        <dc:Bounds x="310" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ge07uc_di" bpmnElement="correctInformation">
+        <dc:Bounds x="530" y="90" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0k1lavn_di" bpmnElement="Event_0k1lavn">
+        <dc:Bounds x="222" y="112" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0mtymk1_di" bpmnElement="Event_0mtymk1">
+        <dc:Bounds x="842" y="292" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="833" y="268" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_00uz32d_di" bpmnElement="CompletionPending">
+        <dc:Bounds x="686" y="270" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ba17sq_di" bpmnElement="Event_0ba17sq">
+        <dc:Bounds x="768" y="292" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="626" y="465" width="8" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0qv4bb8_di" bpmnElement="Flow_0qv4bb8">
+        <di:waypoint x="360" y="170" />
+        <di:waypoint x="360" y="310" />
+        <di:waypoint x="400" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="322" y="221" width="35" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ls6569_di" bpmnElement="Flow_1ls6569">
+        <di:waypoint x="500" y="310" />
+        <di:waypoint x="555" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02m7wfj_di" bpmnElement="Flow_02m7wfj">
+        <di:waypoint x="580" y="285" />
+        <di:waypoint x="580" y="170" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="536" y="225" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19ny0dc_di" bpmnElement="Flow_19ny0dc">
+        <di:waypoint x="530" y="130" />
+        <di:waypoint x="450" y="130" />
+        <di:waypoint x="450" y="270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="451" y="96" width="57" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ufmd9t_di" bpmnElement="Flow_1ufmd9t">
+        <di:waypoint x="258" y="130" />
+        <di:waypoint x="310" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1bpfcx6_di" bpmnElement="Flow_1bpfcx6">
+        <di:waypoint x="605" y="310" />
+        <di:waypoint x="686" y="310" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="625" y="292" width="48" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19c9a4i_di" bpmnElement="Flow_19c9a4i">
+        <di:waypoint x="804" y="310" />
+        <di:waypoint x="842" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1lrh51g_di" bpmnElement="Flow_1lrh51g">
+        <di:waypoint x="736" y="350" />
+        <di:waypoint x="736" y="400" />
+        <di:waypoint x="450" y="400" />
+        <di:waypoint x="450" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="570" y="371" width="56" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

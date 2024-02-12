@@ -1,0 +1,34 @@
+key: UnemploymentInsurance
+name: Unemployment Insurance
+attributes:
+  - name: title
+    type: String
+    attributeConfigurations: []
+  - name: description
+    type: String
+    attributeConfigurations: []
+  - name: mainDocument
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: secondaryDocument
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: tertiaryDocument
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: firstExtraDocument
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality
+  - name: secondExtraDocument
+    type: Document
+    attributeConfigurations:
+      - type: DocumentProcessor
+        processorId: docai-document-quality

@@ -1,0 +1,11 @@
+key: MTAReservation
+name: MTA Reservation
+category: application
+processDefinitionKey: MTAReservationApplication
+schemaKey: MTAReservation
+defaultStatus: DRAFT
+defaultFormConfigurationKey: MTAReservation
+formConfigurationSelectionRules: []
+transactionDefinitionSetKey: MTAReservation
+subjectType: INDIVIDUAL
+allowedRelatedPartyTypes: [INDIVIDUAL, EMPLOYER]

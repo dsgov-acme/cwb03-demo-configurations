@@ -1,0 +1,11 @@
+key: MTALocation
+name: MTA Location
+category: application
+processDefinitionKey: MTALocationApplication
+schemaKey: MTALocation
+defaultStatus: DRAFT
+defaultFormConfigurationKey: MTALocation
+formConfigurationSelectionRules: []
+transactionDefinitionSetKey: MTALocation
+subjectType: INDIVIDUAL
+allowedRelatedPartyTypes: [INDIVIDUAL, EMPLOYER]

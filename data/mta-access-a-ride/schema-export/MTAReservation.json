@@ -1,0 +1,46 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "riderId",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "confirmationTime",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "promiseTime",
+      "type": "LocalDate"
+    },
+    {
+      "constraints": [],
+      "name": "fareType",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "cost",
+      "type": "BigDecimal"
+    },
+    {
+      "constraints": [],
+      "name": "pickLocation",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    },
+    {
+      "constraints": [],
+      "name": "dropLocation",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    }
+  ]
+}

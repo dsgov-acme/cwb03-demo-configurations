@@ -1,0 +1,41 @@
+key: MTAReservation
+workflow: MTAReservation
+constraints:
+  - path: id
+    type: String
+    contentType: null
+dashboardConfiguration:
+  dashboardLabel: Reservations
+  menuIcon: assignment
+  columns:
+    - columnLabel: Trip Id
+      attributePath: id
+      sortable: false
+      displayFormat: null
+    - columnLabel: Rider
+      attributePath: rider.data.fullName
+      sortable: true
+      displayFormat: null
+    - columnLabel: Fare Type
+      attributePath: fareType
+      sortable: true
+      displayFormat: null
+    - columnLabel: Promise Time
+      attributePath: promiseTime
+      sortable: true
+      displayFormat: DATETIME
+    - columnLabel: Status
+      attributePath: status
+      sortable: true
+      displayFormat: null
+  tabs:
+    - tabLabel: All
+    - tabLabel: Scheduled Rides
+      filter:
+        status: 'Confirmed'
+    - tabLabel: Pending Rides
+      filter:
+        status: 'Draft'
+    - tabLabel: Cancellations
+      filter:
+        status: 'Canceled'

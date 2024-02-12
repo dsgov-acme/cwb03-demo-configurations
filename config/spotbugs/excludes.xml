@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <Match>
+        <!-- generated mapper implementations -->
+        <Source name="~.*/.*MapperImpl.java" />
+    </Match>
+    <Match>
+        <Source name="~.*/.*Test.java" />
+        <!-- ignore these codes in tests -->
+        <Bug code="EI2" pattern="CNT_ROUGH_CONSTANT_VALUE" />
+    </Match>
+    <Match>
+        <!-- Undesired in most instances -->
+        <Bug pattern="EI_EXPOSE_REP" />
+    </Match>
+    <Match>
+        <!-- Undesired in most instances -->
+        <Bug pattern="EI_EXPOSE_REP2" />
+    </Match>
+</FindBugsFilter>

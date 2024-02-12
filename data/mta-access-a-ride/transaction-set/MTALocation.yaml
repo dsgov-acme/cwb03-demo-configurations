@@ -1,0 +1,35 @@
+key: MTALocation
+workflow: MTALocation
+constraints:
+  - path: name
+    type: String
+    contentType: null
+  - path: address.addressLine1
+    type: String
+    contentType: null
+dashboardConfiguration:
+  dashboardLabel: Saved Locations
+  menuIcon: assignment
+  columns:
+    - columnLabel: Name
+      attributePath: name
+      sortable: false
+      displayFormat: null
+    - columnLabel: Address
+      attributePath: address.addressLine1
+      sortable: true
+      displayFormat: null
+    - columnLabel: City
+      attributePath: address.city
+      sortable: true
+      displayFormat: null
+    - columnLabel: State
+      attributePath: address.stateCode
+      sortable: true
+      displayFormat: null
+    - columnLabel: Country
+      attributePath: address.countryCode
+      sortable: true
+      displayFormat: null
+  tabs:
+    - tabLabel: All

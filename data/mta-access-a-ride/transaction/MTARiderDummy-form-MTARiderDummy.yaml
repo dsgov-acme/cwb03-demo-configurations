@@ -1,0 +1,24 @@
+name: MTA Rider (dummy)
+key: MTARiderDummy
+schemaKey: MTARider
+transactionDefinitionKey: MTARiderDummy
+configurationSchema: formio
+configuration:
+  components:
+    - key: personalInformation
+      type: panel
+      input: true
+      label: Page 1
+      props:
+        label: Personal Information
+      title: Personal Information
+      components:
+        - key: firstName
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: First Name
+            required: true
+            autocomplete: given-name
+          className: flex-half

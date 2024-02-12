@@ -1,0 +1,877 @@
+name: Financial Benefit
+key: FinancialBenefit
+schemaKey: FinancialBenefit
+transactionDefinitionKey: FinancialBenefit
+configurationSchema: formio
+configuration:
+  components:
+    - key: personalInformation
+      type: panel
+      input: true
+      label: Page 1
+      props:
+        label: Personal Information
+      title: Personal Information
+      components:
+        - key: personalInformation.firstName
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: First Name
+            required: true
+            autocomplete: given-name
+          className: flex-half
+        - key: personalInformation.middleName
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Middle Name (optional)
+            autocomplete: additional-name
+          className: flex-half
+        - key: personalInformation.lastName
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Last Name
+            required: true
+            autocomplete: family-name
+          className: flex-half
+        - key: personalInformation.dateOfBirth
+          type: nuverialDatePicker
+          input: true
+          props:
+            label: Date of Birth
+            required: true
+            startView: month
+            colorTheme: primary
+            autocomplete: bday
+          className: flex-half
+        - key: personalInformation.email
+          type: nuverialTextInput
+          input: true
+          props:
+            type: email
+            label: Email Address
+            required: true
+            autocomplete: email
+          className: flex-half
+          validators:
+            validation:
+              - email
+        - key: personalInformation.phone
+          type: nuverialTextInput
+          input: true
+          props:
+            mask: (000) 000-0000
+            type: tel
+            label: Phone
+            required: true
+            maxLength: 10
+            minLength: 10
+            autocomplete: tel
+          className: flex-half
+        - key: personalInformation.currentAddress
+          type: nuverialAddress
+          input: true
+          props:
+            label: Current Address
+          className: flex-full
+          components:
+            - key: personalInformation.currentAddress.addressLine1
+              input: true
+              props:
+                componentId: addressLine1
+                label: Address Line 1
+                required: true
+            - key: personalInformation.currentAddress.addressLine2
+              input: true
+              props:
+                componentId: addressLine2
+                label: Address Line 2 (optional)
+            - key: personalInformation.currentAddress.city
+              input: true
+              props:
+                componentId: city
+                label: City
+                required: true
+            - key: personalInformation.currentAddress.stateCode
+              input: true
+              props:
+                componentId: stateCode
+                label: State
+                required: true
+                selectOptions:
+                  - key: AL
+                    displayTextValue: Alabama
+                  - key: AK
+                    displayTextValue: Alaska
+                  - key: AS
+                    displayTextValue: American Samoa
+                  - key: AZ
+                    displayTextValue: Arizona
+                  - key: AR
+                    displayTextValue: Arkansas
+                  - key: CA
+                    displayTextValue: California
+                  - key: CO
+                    displayTextValue: Colorado
+                  - key: CT
+                    displayTextValue: Connecticut
+                  - key: DE
+                    displayTextValue: Delaware
+                  - key: DC
+                    displayTextValue: District Of Columbia
+                  - key: FM
+                    displayTextValue: Federated States Of Micronesia
+                  - key: FL
+                    displayTextValue: Florida
+                  - key: GA
+                    displayTextValue: Georgia
+                  - key: GU
+                    displayTextValue: Guam
+                  - key: HI
+                    displayTextValue: Hawaii
+                  - key: ID
+                    displayTextValue: Idaho
+                  - key: IL
+                    displayTextValue: Illinois
+                  - key: IN
+                    displayTextValue: Indiana
+                  - key: IA
+                    displayTextValue: Iowa
+                  - key: KS
+                    displayTextValue: Kansas
+                  - key: KY
+                    displayTextValue: Kentucky
+                  - key: LA
+                    displayTextValue: Louisiana
+                  - key: ME
+                    displayTextValue: Maine
+                  - key: MH
+                    displayTextValue: Marshall Islands
+                  - key: MD
+                    displayTextValue: Maryland
+                  - key: MA
+                    displayTextValue: Massachusetts
+                  - key: MI
+                    displayTextValue: Michigan
+                  - key: MN
+                    displayTextValue: Minnesota
+                  - key: MS
+                    displayTextValue: Mississippi
+                  - key: MO
+                    displayTextValue: Missouri
+                  - key: MT
+                    displayTextValue: Montana
+                  - key: NE
+                    displayTextValue: Nebraska
+                  - key: NV
+                    displayTextValue: Nevada
+                  - key: NH
+                    displayTextValue: New Hampshire
+                  - key: NJ
+                    displayTextValue: New Jersey
+                  - key: NM
+                    displayTextValue: New Mexico
+                  - key: NY
+                    displayTextValue: New York
+                  - key: NC
+                    displayTextValue: North Carolina
+                  - key: ND
+                    displayTextValue: North Dakota
+                  - key: MP
+                    displayTextValue: Northern Mariana Islands
+                  - key: OH
+                    displayTextValue: Ohio
+                  - key: OK
+                    displayTextValue: Oklahoma
+                  - key: OR
+                    displayTextValue: Oregon
+                  - key: PW
+                    displayTextValue: Palau
+                  - key: PA
+                    displayTextValue: Pennsylvania
+                  - key: PR
+                    displayTextValue: Puerto Rico
+                  - key: RI
+                    displayTextValue: Rhode Island
+                  - key: SC
+                    displayTextValue: South Carolina
+                  - key: SD
+                    displayTextValue: South Dakota
+                  - key: TN
+                    displayTextValue: Tennessee
+                  - key: TX
+                    displayTextValue: Texas
+                  - key: UT
+                    displayTextValue: Utah
+                  - key: VT
+                    displayTextValue: Vermont
+                  - key: VI
+                    displayTextValue: Virgin Islands
+                  - key: VA
+                    displayTextValue: Virginia
+                  - key: WA
+                    displayTextValue: Washington
+                  - key: WV
+                    displayTextValue: West Virginia
+                  - key: WI
+                    displayTextValue: Wisconsin
+                  - key: WY
+                    displayTextValue: Wyoming
+            - key: personalInformation.currentAddress.postalCode
+              input: true
+              props:
+                componentId: postalCode
+                label: Zip Code
+                required: true
+            - key: personalInformation.currentAddress.postalCodeExtension
+              input: true
+              props:
+                componentId: postalCodeExtension
+                label: Ext. (Optional)
+            - key: personalInformation.currentAddress.countryCode
+              input: true
+              props:
+                componentId: countryCode
+                label: Country
+                required: true
+                selectOptions:
+                  - key: US
+                    displayTextValue: United States
+                  - key: CA
+                    displayTextValue: Canada
+                  - key: MX
+                    displayTextValue: Mexico
+        - key: personalInformation.isMailingAddressDifferent
+          type: nuverialCheckbox
+          input: true
+          props:
+            label: Mailing address is different than current address
+            colorTheme: primary
+            fieldLabelPosition: after
+          className: flex-full
+        - key: personalInformation.mailingAddress
+          type: nuverialAddress
+          input: true
+          props:
+            label: Mailing Address
+          className: flex-full
+          components:
+            - key: personalInformation.mailingAddress.addressLine1
+              input: true
+              props:
+                componentId: addressLine1
+                label: Address Line 1
+                required: true
+            - key: personalInformation.mailingAddress.addressLine2
+              input: true
+              props:
+                componentId: addressLine2
+                label: Address Line 2 (optional)
+            - key: personalInformation.mailingAddress.city
+              input: true
+              props:
+                componentId: city
+                label: City
+                required: true
+            - key: personalInformation.mailingAddress.stateCode
+              input: true
+              props:
+                componentId: stateCode
+                label: State
+                required: true
+                selectOptions:
+                  - key: AL
+                    displayTextValue: Alabama
+                  - key: AK
+                    displayTextValue: Alaska
+                  - key: AS
+                    displayTextValue: American Samoa
+                  - key: AZ
+                    displayTextValue: Arizona
+                  - key: AR
+                    displayTextValue: Arkansas
+                  - key: CA
+                    displayTextValue: California
+                  - key: CO
+                    displayTextValue: Colorado
+                  - key: CT
+                    displayTextValue: Connecticut
+                  - key: DE
+                    displayTextValue: Delaware
+                  - key: DC
+                    displayTextValue: District Of Columbia
+                  - key: FM
+                    displayTextValue: Federated States Of Micronesia
+                  - key: FL
+                    displayTextValue: Florida
+                  - key: GA
+                    displayTextValue: Georgia
+                  - key: GU
+                    displayTextValue: Guam
+                  - key: HI
+                    displayTextValue: Hawaii
+                  - key: ID
+                    displayTextValue: Idaho
+                  - key: IL
+                    displayTextValue: Illinois
+                  - key: IN
+                    displayTextValue: Indiana
+                  - key: IA
+                    displayTextValue: Iowa
+                  - key: KS
+                    displayTextValue: Kansas
+                  - key: KY
+                    displayTextValue: Kentucky
+                  - key: LA
+                    displayTextValue: Louisiana
+                  - key: ME
+                    displayTextValue: Maine
+                  - key: MH
+                    displayTextValue: Marshall Islands
+                  - key: MD
+                    displayTextValue: Maryland
+                  - key: MA
+                    displayTextValue: Massachusetts
+                  - key: MI
+                    displayTextValue: Michigan
+                  - key: MN
+                    displayTextValue: Minnesota
+                  - key: MS
+                    displayTextValue: Mississippi
+                  - key: MO
+                    displayTextValue: Missouri
+                  - key: MT
+                    displayTextValue: Montana
+                  - key: NE
+                    displayTextValue: Nebraska
+                  - key: NV
+                    displayTextValue: Nevada
+                  - key: NH
+                    displayTextValue: New Hampshire
+                  - key: NJ
+                    displayTextValue: New Jersey
+                  - key: NM
+                    displayTextValue: New Mexico
+                  - key: NY
+                    displayTextValue: New York
+                  - key: NC
+                    displayTextValue: North Carolina
+                  - key: ND
+                    displayTextValue: North Dakota
+                  - key: MP
+                    displayTextValue: Northern Mariana Islands
+                  - key: OH
+                    displayTextValue: Ohio
+                  - key: OK
+                    displayTextValue: Oklahoma
+                  - key: OR
+                    displayTextValue: Oregon
+                  - key: PW
+                    displayTextValue: Palau
+                  - key: PA
+                    displayTextValue: Pennsylvania
+                  - key: PR
+                    displayTextValue: Puerto Rico
+                  - key: RI
+                    displayTextValue: Rhode Island
+                  - key: SC
+                    displayTextValue: South Carolina
+                  - key: SD
+                    displayTextValue: South Dakota
+                  - key: TN
+                    displayTextValue: Tennessee
+                  - key: TX
+                    displayTextValue: Texas
+                  - key: UT
+                    displayTextValue: Utah
+                  - key: VT
+                    displayTextValue: Vermont
+                  - key: VI
+                    displayTextValue: Virgin Islands
+                  - key: VA
+                    displayTextValue: Virginia
+                  - key: WA
+                    displayTextValue: Washington
+                  - key: WV
+                    displayTextValue: West Virginia
+                  - key: WI
+                    displayTextValue: Wisconsin
+                  - key: WY
+                    displayTextValue: Wyoming
+            - key: personalInformation.mailingAddress.postalCode
+              input: true
+              props:
+                componentId: postalCode
+                label: Zip Code
+                required: true
+            - key: personalInformation.mailingAddress.postalCodeExtension
+              input: true
+              props:
+                componentId: postalCodeExtension
+                label: Ext. (Optional)
+            - key: personalInformation.mailingAddress.countryCode
+              input: true
+              props:
+                componentId: countryCode
+                label: Country
+                required: true
+                selectOptions:
+                  - key: US
+                    displayTextValue: United States
+                  - key: CA
+                    displayTextValue: Canada
+                  - key: MX
+                    displayTextValue: Mexico
+          expressions:
+            hide: "!model.personalInformation?.isMailingAddressDifferent"
+    - key: eligibility
+      type: panel
+      input: true
+      label: Page 2
+      props:
+        label: Eligibility
+      title: Eligibility
+      components:
+        - key: nuverialTextContent
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p>Please fill in the required fields below.</p>
+            hideInReviewPage: true
+          className: flex-full
+        - key: eligibility.annualIncomeThresholdExceeded
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Annual income
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: Have you made more than $30k in the last 365 days working
+              for a company in the United States?
+          className: flex-full
+        - key: eligibility.isResidentOfNewYork
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: New York residency
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: Are you currently a resident of New York State?
+          className: flex-full
+        - key: eligibility.filedUnemploymentInOtherStateLast365Days
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Filed unemployment in other state
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: Have you filed for unemployment benefits in another
+              State in the last 365 days?
+          className: flex-full
+        - key: nuverialTextContent1
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p>Total number of weeks you were unemployed in the last 365 days</p>
+          className: flex-full
+        - key: eligibility.totalWeeksUnemployedLastYear
+          type: nuverialTextInput
+          input: true
+          props:
+            max: 52
+            type: number
+            label: Number of weeks
+            required: true
+          className: flex-half
+        - key: eligibility.wereAvailableToWorkInWeeksUnemployed
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Availability to work in weeks unemployed
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: "In the weeks above, were you available to work?"
+          className: flex-full
+        - key: nuverialTextContent2
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p>Maximum monthly wages received across all employments in the United
+              States for the last 365 days</p>
+          className: flex-full
+        - key: eligibility.maxMonthlyWagesInUSLastYear
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Maximum monthly salary
+            required: true
+          className: flex-half
+        - key: nuverialLogicValidator
+          type: nuverialLogicValidator
+          input: false
+          props:
+            modalBody: >-
+              Based on the answers provided, you are not eligible to recieve a financial
+              benefit at this time.
+            modalIcon: warning
+            modalTitle: You are not eligible
+            formErrorLabel: Inelegible
+          expressions:
+            props.required: >-
+              (model?.eligibility?.annualIncomeThresholdExceeded !== 'no') ||
+              (model?.eligibility?.isResidentOfNewYork !== 'yes') ||
+              (model?.eligibility?.filedUnemploymentInOtherStateLast365Days !== 'no')
+    - key: employmentInformation
+      type: panel
+      input: true
+      label: Page 3
+      props:
+        label: Employment Information
+      title: Employment Information
+      components:
+        - key: employmentInformation.employmentStatus
+          type: nuverialSelect
+          input: true
+          props:
+            label: Employment Status
+            required: true
+            colorTheme: primary
+            selectOptions:
+              - key: employed
+                displayTextValue: Employed
+              - key: selfEmployed
+                displayTextValue: Self-Employed
+              - key: unemployed
+                displayTextValue: Unemployed
+              - key: retired
+                displayTextValue: Retired
+          className: flex-half
+        - key: nuverialSectionHeader2
+          type: nuverialSectionHeader
+          input: false
+          props:
+            label: Current Employer
+          className: flex-full
+          expressions:
+            hide:
+              model.employmentInformation?.employmentStatus !== 'employed' && model.employmentInformation?.employmentStatus
+              !== 'selfEmployed'
+        - key: nuverialSectionHeader3
+          type: nuverialSectionHeader
+          input: false
+          props:
+            label: Last Employer
+          className: flex-full
+          expressions:
+            hide:
+              model.employmentInformation?.employmentStatus !== 'unemployed' && model.employmentInformation?.employmentStatus
+              !== 'retired'
+        - key: employmentInformation.industry
+          type: nuverialSelect
+          input: true
+          props:
+            label: Industry of Employment
+            required: true
+            colorTheme: primary
+            selectOptions:
+              - key: accounting
+                displayTextValue: Accounting
+              - key: administrationOfficeSupport
+                displayTextValue: Administration & Office Support
+              - key: advertisingArtsMedia
+                displayTextValue: "Advertising, Arts & Media"
+              - key: bankingFinancialServices
+                displayTextValue: Banking & Financial Services
+              - key: callCenterCustomerService
+                displayTextValue: Call Center & Customer Service
+              - key: communityServicesDevelopment
+                displayTextValue: Community Services & Development
+              - key: construction
+                displayTextValue: Construction
+              - key: consultingStrategy
+                displayTextValue: Consulting & Strategy
+              - key: designArchitecture
+                displayTextValue: Design & Architecture
+              - key: educationTraining
+                displayTextValue: Education & Training
+              - key: engineering
+                displayTextValue: Engineering
+              - key: farmingAnimalsConservation
+                displayTextValue: "Farming, Animals & Conservation"
+              - key: governmentDefense
+                displayTextValue: Government & Defense
+              - key: healthcareMedical
+                displayTextValue: Healthcare & Medical
+              - key: hospitalityTourism
+                displayTextValue: Hospitality & Tourism
+              - key: humanResourcesRecruitment
+                displayTextValue: Human Resources & Recruitment
+              - key: informationCommunicationTechnology
+                displayTextValue: Information & Communication Technology
+              - key: insuranceSuperannuation
+                displayTextValue: Insurance & Superannuation
+              - key: legal
+                displayTextValue: Legal
+              - key: manufacturingTransportLogistics
+                displayTextValue: "Manufacturing, Transport & Logistics"
+              - key: marketingCommunications
+                displayTextValue: Marketing & Communications
+              - key: miningResourcesEnergy
+                displayTextValue: "Mining, Resources & Energy"
+              - key: realEstateProperty
+                displayTextValue: Real Estate & Property
+              - key: retailConsumerProducts
+                displayTextValue: Retail & Consumer Products
+              - key: sales
+                displayTextValue: Sales
+              - key: scienceTechnology
+                displayTextValue: Science & Technology
+              - key: sportsRecreation
+                displayTextValue: Sports & Recreation
+              - key: tradesServices
+                displayTextValue: Trades & Services
+              - key: other
+                displayTextValue: Other
+          className: flex-half
+          expressions:
+            hide: "!model.employmentInformation?.employmentStatus"
+        - key: employmentInformation.jobTitle
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Job Title
+            required: true
+          className: flex-half
+          expressions:
+            hide: "!model.employmentInformation?.employmentStatus"
+        - key: employmentInformation.employerName
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Employer Name
+            required: true
+          className: flex-half
+          expressions:
+            hide: "!model.employmentInformation?.employmentStatus"
+        - key: employmentInformation.phoneNumber
+          type: nuverialTextInput
+          input: true
+          props:
+            mask: (000) 000-0000
+            type: tel
+            label: Employer Phone Number
+            maxLength: 10
+            minLength: 10
+          className: flex-half
+          expressions:
+            hide: "!model.employmentInformation?.employmentStatus"
+    - key: incomeTax
+      type: panel
+      input: true
+      label: Page 4
+      props:
+        label: Income & Tax Info
+      title: Income & Tax Info
+      components:
+        - key: nuverialTextContent3
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p>Please fill in the required fields below.</p>
+            hideInReviewPage: true
+          className: flex-half
+        - key: nuverialTextContent4
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p>Total yearly income (from all sources) in the last 365 days</p>
+          className: flex-full
+        - key: incomeTax.yearlyIncome
+          type: nuverialTextInput
+          input: true
+          props:
+            type: number
+            label: Yearly Income
+            required: true
+            maxLength: 10
+            minLength: 1
+          className: flex-half
+        - key: incomeTax.filedTaxes
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Filed Taxes
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: Have you ever filed taxes in the United States in the last 5 years?
+          className: flex-full
+        - key: nuverialTextContent5
+          type: nuverialTextContent
+          input: false
+          props:
+            content: <p><strong>Do you have any of the following documents?</strong></p>
+          className: flex-half
+          expressions:
+            hide: model.incomeTax?.filedTaxes === 'yes' || !model.incomeTax?.filedTaxes
+        - key: incomeTax.employmentLetter
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Employment Letter
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: >-
+              Employment Letter (Must show dates worked and the reason you are no
+              longer employed)
+          className: flex-full
+          expressions:
+            hide: model.incomeTax?.filedTaxes === 'yes' || !model.incomeTax?.filedTaxes
+        - key: incomeTax.payStubs
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: Pay Stubs
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: Pay Stubs (Six weeks of pay stubs dated within the last 12 months)
+          className: flex-full
+          expressions:
+            hide: model.incomeTax?.filedTaxes === 'yes' || !model.incomeTax?.filedTaxes
+        - key: incomeTax.w2Or1099
+          type: nuverialRadioCards
+          input: true
+          props:
+            formErrorLabel: W-2 or 109
+            required: true
+            colorTheme: primary
+            answers:
+              - title: "Yes"
+                value: "yes"
+                imagePosition: before
+              - title: "No"
+                value: "no"
+                imagePosition: before
+            label: W-2 or 1099 (Wages or income earned for either 2019 or 2020)
+          className: flex-full
+          expressions:
+            hide: model.incomeTax?.filedTaxes === 'yes' || !model.incomeTax?.filedTaxes
+        - key: incomeTax.itin
+          type: nuverialTextInput
+          input: true
+          props:
+            mask: 000-00-0000
+            type: text
+            label: ITIN
+            required: true
+          className: flex-half
+          expressions:
+            hide: model.incomeTax?.filedTaxes === 'no' || !model.incomeTax?.filedTaxes
+    - key: documents
+      type: panel
+      input: true
+      label: Page 5
+      props:
+        label: Documents
+      title: Documents
+      components:
+        - key: photoId
+          type: nuverialFileUpload
+          input: true
+          props:
+            label: Photo ID
+            content: "<p>Acceptable documents: US Passport, Foreign Passport, NYS Driver License, Marriage Certificate From State, Divorce Decree From State, and US Birth Certificate.</p><p>Make sure the image is not blurry.</p>"
+          className: flex-full
+          components:
+            - key: documents.idFront
+              input: true
+              props:
+                label: Front of ID
+                required: true
+            - key: documents.idBack
+              input: true
+              props:
+                label: Back of ID
+                required: true
+        - key: proofOfResidency
+          type: nuverialFileUpload
+          input: true
+          props:
+            label: Proof of Residency
+            content: "<p>Acceptable documents: Drivers License, Utility Bill, Letter From Government, Tax Letter Confirming Address, and Mortgage, Lease, or Rental Agreement.</p><p>Make sure the image is not blurry.</p>"
+          className: flex-full
+          components:
+            - key: documents.proofOfResidency
+              input: true
+              props:
+                label: ""
+                required: true
+        - key: proofOfIncome
+          type: nuverialFileUpload
+          input: true
+          props:
+            label: Proof of Income/Tax
+            content: "<p>Acceptable documents: Tax Return, Employment Letter, Pay Stubs, W-2 Form.</p><p>Make sure the image is not blurry.</p>"
+          className: flex-full
+          components:
+            - key: documents.proofOfIncome
+              input: true
+              props:
+                label: ""
+                required: true

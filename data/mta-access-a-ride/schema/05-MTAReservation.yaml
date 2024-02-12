@@ -1,0 +1,39 @@
+key: MTAReservation
+name: MTA Reservation
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: rider
+    type: DynamicEntity
+    entitySchema: MTARider
+    attributeConfigurations: []
+  - name: tripType
+    type: String
+    attributeConfigurations: []
+  - name: requestedDate
+    type: LocalDate
+    attributeConfigurations: []
+  - name: requestedTime
+    type: LocalTime
+    attributeConfigurations: []
+  - name: promiseTime
+    type: LocalDate
+    attributeConfigurations: []
+  - name: status
+    type: String
+    attributeConfigurations: []
+  - name: fareType
+    type: String
+    attributeConfigurations: []
+  - name: cost
+    type: BigDecimal
+    attributeConfigurations: []
+  - name: pickLocation
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: []
+  - name: dropLocation
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: []

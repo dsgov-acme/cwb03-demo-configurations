@@ -1,0 +1,19 @@
+environments:
+  local:
+    gcpProjectId: cwb03-dev-a1fe
+    tokenPrivateKeySecret: "cwb03-self-signed-token-private-key"
+    tokenIssuer: cwb03
+    workManagerBaseUrl: "http://api.cwb03.test/wm"
+    notificationServiceBaseUrl: "http://api.cwb03.test/ns"
+  dev:
+    gcpProjectId: cwb03-dev-a1fe
+    tokenPrivateKeySecret: "cwb03-self-signed-token-private-key"
+    tokenIssuer: cwb03
+    workManagerBaseUrl: "https://api-dev.cwb03.dsgov.demo.nuvalence.io/wm"
+    notificationServiceBaseUrl: "https://api-dev.cwb03.dsgov.demo.nuvalence.io/ns"
+  demo:
+    gcpProjectId: dsgov-demo
+    tokenPrivateKeySecret: "cwb03-self-signed-token-private-key"
+    tokenIssuer: dsgov
+    workManagerBaseUrl: "https://api.cwb03.dsgov.demo.nuvalence.io/wm"
+    notificationServiceBaseUrl: "https://api.cwb03.dsgov.demo.nuvalence.io/ns"

@@ -1,0 +1,55 @@
+key: UnemploymentInsurance
+workflow: UnemploymentInsurance
+constraints:
+  - path: title
+    type: String
+    contentType: null
+  - path: description
+    type: String
+    contentType: null
+dashboardConfiguration:
+  dashboardLabel: Communications
+  menuIcon: assignment
+  columns:
+    - columnLabel: Priority
+      attributePath: priority
+      sortable: true
+      displayFormat: PRIORITY
+    - columnLabel: Transaction Id
+      attributePath: externalId
+      sortable: false
+      displayFormat: null
+    - columnLabel: Type
+      attributePath: transactionDefinitionName
+      sortable: false
+      displayFormat: null
+    - columnLabel: Date Created
+      attributePath: createdTimestamp
+      sortable: true
+      displayFormat: DATETIME
+    - columnLabel: Last Updated
+      attributePath: lastUpdatedTimestamp
+      sortable: true
+      displayFormat: DATETIME
+    - columnLabel: Title
+      attributePath: data.title
+      sortable: false
+      displayFormat: null
+    - columnLabel: Description
+      attributePath: data.description
+      sortable: false
+      displayFormat: null
+    - columnLabel: Assignee
+      attributePath: assignedTo
+      sortable: false
+      displayFormat: USERDATA
+  tabs:
+    - tabLabel: Review
+      filter:
+        status: 'Review'
+    - tabLabel: Info Requested
+      filter:
+        status: 'Info Requested'
+    - tabLabel: Completed
+      filter:
+        status: 'Completed'

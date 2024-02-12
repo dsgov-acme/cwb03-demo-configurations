@@ -1,0 +1,11 @@
+key: FinancialBenefit
+name: Financial Benefit
+category: application
+processDefinitionKey: FinancialBenefitApplication
+schemaKey: FinancialBenefit
+defaultStatus: DRAFT
+defaultFormConfigurationKey: FinancialBenefit
+formConfigurationSelectionRules: []
+transactionDefinitionSetKey: FinancialBenefit
+subjectType: INDIVIDUAL
+allowedRelatedPartyTypes: [INDIVIDUAL, EMPLOYER]

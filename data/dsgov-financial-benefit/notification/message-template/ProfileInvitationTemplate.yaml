@@ -1,0 +1,87 @@
+key: ProfileInvitationTemplate
+name: Profile Invitation
+description: Profile Invitation
+emailFormat:
+  layoutKey: ProfileInvitationsEmailLayout
+  content:
+    language:
+      templates:
+        en: en
+        es: es
+    title:
+      templates:
+        en: Email-Account invitation
+        es: Correo electrónico-Invitación de cuenta
+    greeting:
+      templates:
+        en: Hello
+        es: Hola
+    main-text-p1:
+      templates:
+        en: "You have been invited to join an account for: {{profile-display-name}}"
+        es: "Usted ha sido invitado a unirse a una cuenta para: {{profile-display-name}}"
+    main-text-p2:
+      templates:
+        en: "To accept, follow these simple steps."
+        es: "Para aceptar, sigue estos sencillos pasos."
+    main-text-p3:
+      templates:
+        en: "1. Click the button in this email."
+        es: "1. Haga clic en el botón de este correo electrónico."
+    main-text-p4:
+      templates:
+        en: "2. If prompted, sign into your account or create a new one."
+        es: "2. Si se le solicita, inicie sesión en su cuenta o cree una nueva."
+    main-text-p5:
+      templates:
+        en: "3. Claim your invitation at the prompt. If you are not prompted to claim your invitation, return to this email and click the button again."
+        es: "3. Acepte su invitación cuando se le indique. Si no se le solicita que acepte su invitación, regrese a este correo electrónico y haga clic en el botón nuevamente."
+    portal-url:
+      templates:
+        en: "{{portal-url}}"
+        es: "{{portal-url}}"
+    button-text:
+      templates:
+        en: "Accept your invitation"
+        es: "Acepta tu invitación"
+    primary-color:
+      templates:
+        en: "#1f1f1f"
+        es: "#1f1f1f"
+    theme-color-tertiary:
+      templates:
+        en: "#F76E39"
+        es: "#F76E39"
+    main-background-color:
+      templates:
+        en: "#ffffff"
+        es: "#ffffff"
+    text-color:
+      templates:
+        en: "#000000"
+        es: "#000000"
+    footer-background-color:
+      templates:
+        en: "#F9F9F9"
+        es: "#F9F9F9"
+    button-hover-color:
+      templates:
+        en: "#0c76c8"
+        es: "#0c76c8"
+    button-text-color:
+      templates:
+        en: "#ffffff"
+        es: "#ffffff"
+  subject:
+    templates:
+      en: Account invitation
+      es: Invitación de cuenta
+smsFormat:
+  message:
+    templates:
+      en: "You have been invited to join an account for: {{profile-display-name}}"
+      es: "Usted ha sido invitado a unirse a una cuenta para: {{profile-display-name}}"
+parameters:
+  invitation-id: String
+  portal-url: String
+  profile-display-name: String

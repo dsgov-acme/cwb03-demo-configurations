@@ -1,0 +1,10 @@
+key: MTARiderDummy
+name: MTA Rider (dummy)
+category: application
+processDefinitionKey: MTARiderDummy
+schemaKey: MTARider
+defaultStatus: DRAFT
+formConfigurationSelectionRules: []
+transactionDefinitionSetKey: MTARiderDummy
+subjectType: INDIVIDUAL
+allowedRelatedPartyTypes: [INDIVIDUAL, EMPLOYER]

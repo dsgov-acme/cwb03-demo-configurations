@@ -1,0 +1,22 @@
+key: MTALocation
+name: MTALocation
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: name
+    type: String
+    attributeConfigurations: []
+  - name: locationType
+    type: String
+    attributeConfigurations: [ ]
+  - name: latitude
+    type: BigDecimal
+    attributeConfigurations: []
+  - name: longitude
+    type: BigDecimal
+    attributeConfigurations: []
+  - name: address
+    type: DynamicEntity
+    entitySchema: CommonAddress
+    attributeConfigurations: []

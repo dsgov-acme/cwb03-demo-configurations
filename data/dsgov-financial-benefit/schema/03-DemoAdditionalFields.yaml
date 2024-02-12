@@ -1,0 +1,6 @@
+key: DemoAdditionalFields
+name: Demo Additional Fields
+attributes:
+  - name: ssn
+    type: String
+    attributeConfigurations: []

@@ -1,0 +1,24 @@
+key: MTAConversation
+name: MTA Conversation
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: rideId
+    type: String
+    attributeConfigurations: []
+  - name: author
+    type: String
+    attributeConfigurations: []
+  - name: date
+    type: LocalDate
+    attributeConfigurations: []
+  - name: type
+    type: String
+    attributeConfigurations: []
+  - name: title
+    type: String
+    attributeConfigurations: []
+  - name: transcript
+    type: String
+    attributeConfigurations: []

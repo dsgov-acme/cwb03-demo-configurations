@@ -1,0 +1,128 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+apply plugin: 'com.github.spotbugs'
+apply plugin: 'pmd'
+apply plugin: 'com.diffplug.spotless'
+
+dependencies {
+    implementation project(':camunda-client')
+    implementation project(':work-manager-client')
+    implementation project(':notification-service-client')
+    implementation 'io.nuvalence.dsgov:dsgov-auth:0.1.0'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2'
+    implementation 'org.springframework:spring-context:5.3.20'
+    implementation 'com.google.cloud:google-cloud-secretmanager:2.12.0'
+    implementation 'commons-cli:commons-cli:1.5.0'
+    implementation 'commons-io:commons-io:2.11.0'
+
+    // required dependencies of dsgov-auth
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.7.8')
+
+    runtimeOnly 'ch.qos.logback:logback-classic:1.4.6'
+    runtimeOnly 'org.fusesource.jansi:jansi:1.17'
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'io.nuvalence.dsgov.config.deployer.Application'
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    archiveVersion.set('')
+    mergeServiceFiles()
+}
+
+/**
+ * Code style.
+ */
+checkstyle {
+    toolVersion '8.25'
+}
+spotless {
+    java {
+        googleJavaFormat('1.16.0').aosp()
+        toggleOffOn('/**', '*/') // don't reformat javadocs
+        importOrder('', 'java', 'javax')
+    }
+}
+
+/**
+ * code coverage
+ */
+test.finalizedBy jacocoTestReport
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: test.jacoco.excludes)
+        }))
+    }
+}
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: test.jacoco.excludes)
+        }))
+    }
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+check.dependsOn jacocoTestCoverageVerification
+
+/**
+ * static code analysis
+ */
+spotbugs {
+    reportsDir = file("$buildDir/reports/spotbugs")
+    excludeFilter = file("${rootDir}/config/spotbugs/excludes.xml")
+}
+spotbugsMain {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+spotbugsTest {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+pmd {
+    toolVersion = "6.21.0"
+    ruleSets = [] // clear gradle defaults
+    ruleSetFiles = files("${rootDir}/config/pmd/pmd.xml")
+    pmdMain {
+        source = fileTree('src/main')
+    }
+    pmdTest {
+        source = fileTree('src/test')
+        ruleSetFiles = files("${rootDir}/config/pmd/pmd-test.xml")
+    }
+}
+
+/**
+ * security
+ */
+dependencyCheck {
+    failBuildOnCVSS = 7
+    skipConfigurations = ['checkstyle', 'testImplementation', 'functionalTestImplementation']
+    suppressionFile = "${rootDir}/config/owasp/suppressions.xml"
+}

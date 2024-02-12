@@ -1,0 +1,27 @@
+key: FinancialBenefit
+name: Financial benefit
+attributes:
+  - name: personalInformation
+    type: DynamicEntity
+    entitySchema: CommonPersonalInformation
+    attributeConfigurations: []
+  - name: employmentInformation
+    type: DynamicEntity
+    entitySchema: CommonEmploymentInformation
+    attributeConfigurations: []
+  - name: incomeTax
+    type: DynamicEntity
+    entitySchema: IncomeTaxInformation
+    attributeConfigurations: []
+  - name: documents
+    type: DynamicEntity
+    entitySchema: FinancialBenefitDocuments
+    attributeConfigurations: []
+  - name: eligibility
+    type: DynamicEntity
+    entitySchema: FinancialBenefitEligibility
+  - name: demo
+    type: DynamicEntity
+    entitySchema: DemoAdditionalFields
+    attributeConfigurations: []
+

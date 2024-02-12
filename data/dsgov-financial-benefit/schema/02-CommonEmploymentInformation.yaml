@@ -1,0 +1,18 @@
+key: CommonEmploymentInformation
+name: Common employment information
+attributes:
+  - name: employmentStatus
+    type: String
+    attributeConfigurations: []
+  - name: industry
+    type: String
+    attributeConfigurations: []
+  - name: jobTitle
+    type: String
+    attributeConfigurations: []
+  - name: employerName
+    type: String
+    attributeConfigurations: []
+  - name: phoneNumber
+    type: String
+    attributeConfigurations: []

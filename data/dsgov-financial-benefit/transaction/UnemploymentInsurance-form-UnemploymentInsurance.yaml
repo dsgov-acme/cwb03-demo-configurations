@@ -1,0 +1,73 @@
+name: Unemployment Insurance
+key: UnemploymentInsurance
+schemaKey: UnemploymentInsurance
+transactionDefinitionKey: UnemploymentInsurance
+configurationSchema: formio
+configuration:
+  components:
+    - key: descriptionData
+      type: panel
+      input: true
+      label: Page 1
+      props:
+        label: Description Data
+      title: Description Data
+      components:
+        - key: title
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Title
+            required: true
+          className: flex-half
+        - key: description
+          type: nuverialTextArea
+          input: true
+          props:
+            label: Description
+            autoSize: true
+            required: true
+            autoSizeMinRows: 1
+          className: flex-full
+    - key: attachments
+      type: panel
+      input: true
+      label: Page 2
+      props:
+        label: Attachments
+      title: Attachments
+      components:
+        - key: documents
+          type: nuverialFileUpload
+          input: true
+          props:
+            label: Documents
+            content: '<p>Documents needed to support the Unemployment Insurance communication.</p>'
+          className: flex-full
+          components:
+            - key: mainDocument
+              input: true
+              props:
+                label: Main Supporting Document
+                required: true
+            - key: secondaryDocument
+              input: true
+              props:
+                label: Secondary Document
+                required: false
+            - key: tertiaryDocument
+              input: true
+              props:
+                label: Tertiary Document
+                required: false
+            - key: firstExtraDocument
+              input: true
+              props:
+                label: First Extra Document
+                required: false
+            - key: secondExtraDocument
+              input: true
+              props:
+                label: Second Extra Document
+                required: false

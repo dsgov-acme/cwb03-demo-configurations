@@ -1,0 +1,21 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "id",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "initialPickLocation",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    },
+    {
+      "constraints": [],
+      "name": "finalDropLocation",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    }
+  ]
+}

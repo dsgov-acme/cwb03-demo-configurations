@@ -1,0 +1,58 @@
+key: MTARider
+name: MTA Rider
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: firstName
+    type: String
+    attributeConfigurations: []
+  - name: middleName
+    type: String
+    attributeConfigurations: []
+  - name: lastName
+    type: String
+    attributeConfigurations: []
+  - name: dateOfBirth
+    type: LocalDate
+    attributeConfigurations: []
+  - name: email
+    type: String
+    attributeConfigurations: []
+  - name: phone
+    type: String
+    attributeConfigurations: []
+  - name: currentAddress
+    type: DynamicEntity
+    entitySchema: CommonAddress
+    attributeConfigurations: []
+  - name: savedLocations
+    type: List
+    entitySchema: MTALocation
+    contentType: DynamicEntity
+    attributeConfigurations: []
+  - name: numCompanion
+    type: Integer
+    attributeConfigurations: []
+  - name: pcaRequired
+    type: Boolean
+    attributeConfigurations: []
+  - name: pcaName
+    type: String
+    attributeConfigurations: []
+  - name: serviceAnimalRequired
+    type: Boolean
+    attributeConfigurations: []
+  - name: ambSeats
+    type: Boolean
+    attributeConfigurations: []
+  - name: wcSeats
+    type: Boolean
+    attributeConfigurations: []
+  - name: wideSeats
+    type: Boolean
+    attributeConfigurations: []
+computedAttributes:
+  - name: fullName
+    type: String
+    expression: "#concat(\" \", firstName, lastName)"
