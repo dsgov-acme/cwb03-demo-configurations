@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1askkcv" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.19.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
   <bpmn:collaboration id="MTAReservation">
-    <bpmn:participant id="Participant_06j6vlv" name="Rider" processRef="MTARideApplication" />
+    <bpmn:participant id="Participant_06j6vlv" name="Rider" processRef="MTAReservationApplication" />
     <bpmn:participant id="Participant_0xrkvxr" name="Operator" processRef="MTARideCCAIApplication" />
     <bpmn:messageFlow id="Flow_1fijlai" sourceRef="RideConfirmedRiderEventSend" targetRef="RideConfirmedDriverEventListener" />
     <bpmn:messageFlow id="Flow_0290ce4" sourceRef="RideCompleteDriverEventSend" targetRef="RideCompleteRiderEventListener" />
     <bpmn:messageFlow id="Flow_0fqlrlu" sourceRef="Activity_07tw7z5" targetRef="EnterPersonalInfo" />
   </bpmn:collaboration>
-  <bpmn:process id="MTARideApplication" isExecutable="true" camunda:historyTimeToLive="180">
+  <bpmn:process id="MTAReservationApplication" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:laneSet id="LaneSet_0aw3i2v">
       <bpmn:lane id="Lane_1y1d710">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EnterPersonalInfo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RideCompleted</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RiderCanceled</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EnterLocationInfo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RiderWaitForCompletion</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RideCompleteRiderEventListener</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RideConfirmedRiderEventSend</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0494tbm</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EnterRestrictionInfo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SelectPromiseTime</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ConfirmRide</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EnterLocationInfo</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1">
@@ -68,18 +67,6 @@
       <bpmn:incoming>Flow_1gg699p</bpmn:incoming>
       <bpmn:terminateEventDefinition id="TerminateEventDefinition_0mc2tdb" />
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0r8balt" sourceRef="EnterLocationInfo" targetRef="EnterRestrictionInfo" />
-    <bpmn:sequenceFlow id="Flow_1w5c65h" sourceRef="EnterRestrictionInfo" targetRef="SelectPromiseTime" />
-    <bpmn:userTask id="EnterLocationInfo" name="Enter pickup/drop off locations">
-      <bpmn:extensionElements>
-        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
-        <camunda:properties>
-          <camunda:property name="status" value="Draft" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_08s2w5j</bpmn:incoming>
-      <bpmn:outgoing>Flow_0r8balt</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="RiderWaitForCompletion" name="Wait for Complete or Cancel Ride">
       <bpmn:extensionElements>
         <camunda:properties>
@@ -106,16 +93,6 @@
       <bpmn:outgoing>Flow_191ihpf</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_00a4ok9" sourceRef="SelectPromiseTime" targetRef="ConfirmRide" />
-    <bpmn:userTask id="EnterRestrictionInfo" name="Enter profile restrictions">
-      <bpmn:extensionElements>
-        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
-        <camunda:properties>
-          <camunda:property name="status" value="Draft" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0r8balt</bpmn:incoming>
-      <bpmn:outgoing>Flow_1w5c65h</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:userTask id="SelectPromiseTime" name="Select Promise Time">
       <bpmn:extensionElements>
         <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
@@ -123,7 +100,7 @@
           <camunda:property name="status" value="Draft" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_1w5c65h</bpmn:incoming>
+      <bpmn:incoming>Flow_040bp0e</bpmn:incoming>
       <bpmn:outgoing>Flow_00a4ok9</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="ConfirmRide" name="Confirm Ride Details">
@@ -140,6 +117,17 @@
       <bpmn:outgoing>Flow_1abzpsm</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1abzpsm" sourceRef="ConfirmRide" targetRef="Gateway_0494tbm" />
+    <bpmn:sequenceFlow id="Flow_040bp0e" sourceRef="EnterLocationInfo" targetRef="SelectPromiseTime" />
+    <bpmn:userTask id="EnterLocationInfo" name="Enter pickup/drop off locations">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:properties>
+          <camunda:property name="status" value="Draft" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_08s2w5j</bpmn:incoming>
+      <bpmn:outgoing>Flow_040bp0e</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:process id="MTARideCCAIApplication" isExecutable="true" camunda:historyTimeToLive="180">
     <bpmn:intermediateCatchEvent id="RideConfirmedDriverEventListener" name="Ride Confirmed">
@@ -229,9 +217,6 @@
           <dc:Bounds x="1692" y="108" width="76" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_12kaosj_di" bpmnElement="EnterLocationInfo">
-        <dc:Bounds x="480" y="145" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0wtdt47_di" bpmnElement="RiderWaitForCompletion">
         <dc:Bounds x="1510" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -245,9 +230,6 @@
       <bpmndi:BPMNShape id="Gateway_0494tbm_di" bpmnElement="Gateway_0494tbm" isMarkerVisible="true">
         <dc:Bounds x="1295" y="160" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_18blc6p_di" bpmnElement="EnterRestrictionInfo">
-        <dc:Bounds x="610" y="145" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1vw1ge9_di" bpmnElement="SelectPromiseTime">
         <dc:Bounds x="890" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -255,6 +237,9 @@
       <bpmndi:BPMNShape id="Activity_0a6k2cq_di" bpmnElement="ConfirmRide">
         <dc:Bounds x="1160" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_12kaosj_di" bpmnElement="EnterLocationInfo">
+        <dc:Bounds x="590" y="145" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_15g08bj_di" bpmnElement="RideCompleteRiderEventListener">
         <dc:Bounds x="1572" y="207" width="36" height="36" />
@@ -277,7 +262,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08s2w5j_di" bpmnElement="Flow_08s2w5j">
         <di:waypoint x="420" y="185" />
-        <di:waypoint x="480" y="185" />
+        <di:waypoint x="590" y="185" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0y9xd7a_di" bpmnElement="Flow_0y9xd7a">
         <di:waypoint x="1345" y="185" />
@@ -306,14 +291,6 @@
         <di:waypoint x="1651" y="225" />
         <di:waypoint x="1712" y="225" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0r8balt_di" bpmnElement="Flow_0r8balt">
-        <di:waypoint x="580" y="185" />
-        <di:waypoint x="610" y="185" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1w5c65h_di" bpmnElement="Flow_1w5c65h">
-        <di:waypoint x="710" y="185" />
-        <di:waypoint x="890" y="185" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_00a4ok9_di" bpmnElement="Flow_00a4ok9">
         <di:waypoint x="990" y="185" />
         <di:waypoint x="1160" y="185" />
@@ -321,6 +298,10 @@
       <bpmndi:BPMNEdge id="Flow_1abzpsm_di" bpmnElement="Flow_1abzpsm">
         <di:waypoint x="1260" y="185" />
         <di:waypoint x="1295" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_040bp0e_di" bpmnElement="Flow_040bp0e">
+        <di:waypoint x="690" y="185" />
+        <di:waypoint x="890" y="185" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_0xrkvxr_di" bpmnElement="Participant_0xrkvxr" isHorizontal="true">
         <dc:Bounds x="160" y="402" width="1920" height="318" />
