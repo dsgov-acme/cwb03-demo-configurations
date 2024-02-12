@@ -18,7 +18,7 @@
     </bpmn:startEvent>
     <bpmn:userTask id="EnterLocationInfo" name="Enter Location Civic Address">
       <bpmn:extensionElements>
-        <camunda:executionListener class="io.nuvalence.workmanager.service.service.MTALocationTransactionStatusUpdateDelegate" event="start" />
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
         <camunda:properties>
           <camunda:property name="status" value="Draft" />
         </camunda:properties>

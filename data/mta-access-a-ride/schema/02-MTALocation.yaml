@@ -7,9 +7,15 @@ attributes:
   - name: name
     type: String
     attributeConfigurations: []
+  - name: riderId
+    type: String
+    attributeConfigurations: []
+  - name: placeId
+    type: String
+    attributeConfigurations: []
   - name: locationType
     type: String
-    attributeConfigurations: [ ]
+    attributeConfigurations: []
   - name: latitude
     type: BigDecimal
     attributeConfigurations: []
