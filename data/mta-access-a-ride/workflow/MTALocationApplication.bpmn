@@ -7,16 +7,15 @@
     <bpmn:laneSet id="LaneSet_0aw3i2v">
       <bpmn:lane id="Lane_1y1d710">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EnterLocationInfo</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ConfirmLocation</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Gateway_0494tbm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EnterLocationName</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EnterCivicAddress</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>LocationSavedEndEvent</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0kr5mfl</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="EnterLocationInfo" name="Enter Location Civic Address">
+    <bpmn:userTask id="EnterLocationName" name="Enter Location Name">
       <bpmn:extensionElements>
         <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
         <camunda:properties>
@@ -24,36 +23,21 @@
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0kr5mfl</bpmn:incoming>
-      <bpmn:incoming>Flow_191ihpf</bpmn:incoming>
       <bpmn:outgoing>Flow_08s2w5j</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0kr5mfl" sourceRef="StartEvent_1" targetRef="EnterLocationInfo" />
-    <bpmn:sequenceFlow id="Flow_191ihpf" name="revise" sourceRef="Gateway_0494tbm" targetRef="EnterLocationInfo">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${action == "Cancel"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_08s2w5j" sourceRef="EnterLocationInfo" targetRef="ConfirmLocation" />
-    <bpmn:sequenceFlow id="Flow_0y9xd7a" name="confirmed" sourceRef="Gateway_0494tbm" targetRef="LocationSavedEndEvent">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${action == "Submit"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1abzpsm" sourceRef="ConfirmLocation" targetRef="Gateway_0494tbm" />
-    <bpmn:userTask id="ConfirmLocation" name="Confirm Location Details">
+    <bpmn:sequenceFlow id="Flow_0kr5mfl" sourceRef="StartEvent_1" targetRef="EnterLocationName" />
+    <bpmn:sequenceFlow id="Flow_08s2w5j" sourceRef="EnterLocationName" targetRef="EnterCivicAddress" />
+    <bpmn:sequenceFlow id="Flow_1abzpsm" sourceRef="EnterCivicAddress" targetRef="LocationSavedEndEvent" />
+    <bpmn:userTask id="EnterCivicAddress" name="Enter Civic Address">
       <bpmn:extensionElements>
         <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
         <camunda:properties>
-          <camunda:property name="status" value="Confirmed" />
-          <camunda:property name="workflow.actions" value="Submit,Cancel" />
-          <camunda:property name="workflow.actions.Submit.label" value="Save" />
-          <camunda:property name="workflow.actions.Cancel.label" value="Cancel" />
+          <camunda:property name="status" value="Draft" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_08s2w5j</bpmn:incoming>
       <bpmn:outgoing>Flow_1abzpsm</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_0494tbm">
-      <bpmn:incoming>Flow_1abzpsm</bpmn:incoming>
-      <bpmn:outgoing>Flow_0y9xd7a</bpmn:outgoing>
-      <bpmn:outgoing>Flow_191ihpf</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:endEvent id="LocationSavedEndEvent" name="Location Saved">
       <bpmn:extensionElements>
         <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
@@ -61,7 +45,7 @@
           <camunda:property name="status" value="Completed" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0y9xd7a</bpmn:incoming>
+      <bpmn:incoming>Flow_1abzpsm</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_30fc3jp" name="RideConfirmedMessageEvent" />
@@ -78,50 +62,31 @@
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="232" y="167" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1imnv1j_di" bpmnElement="EnterLocationInfo">
+      <bpmndi:BPMNShape id="Activity_1imnv1j_di" bpmnElement="EnterLocationName">
         <dc:Bounds x="320" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0a6k2cq_di" bpmnElement="ConfirmLocation">
+      <bpmndi:BPMNShape id="Activity_0a6k2cq_di" bpmnElement="EnterCivicAddress">
         <dc:Bounds x="680" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0494tbm_di" bpmnElement="Gateway_0494tbm" isMarkerVisible="true">
-        <dc:Bounds x="995" y="160" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0yv0vm7" bpmnElement="LocationSavedEndEvent">
-        <dc:Bounds x="1282" y="167" width="36" height="36" />
+        <dc:Bounds x="1032" y="167" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1262" y="203" width="76" height="14" />
+          <dc:Bounds x="1012" y="203" width="76" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0kr5mfl_di" bpmnElement="Flow_0kr5mfl">
         <di:waypoint x="268" y="185" />
         <di:waypoint x="320" y="185" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_191ihpf_di" bpmnElement="Flow_191ihpf">
-        <di:waypoint x="1020" y="160" />
-        <di:waypoint x="1020" y="125" />
-        <di:waypoint x="370" y="125" />
-        <di:waypoint x="370" y="145" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="680" y="107" width="30" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08s2w5j_di" bpmnElement="Flow_08s2w5j">
         <di:waypoint x="420" y="185" />
         <di:waypoint x="680" y="185" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0y9xd7a_di" bpmnElement="Flow_0y9xd7a">
-        <di:waypoint x="1045" y="185" />
-        <di:waypoint x="1282" y="185" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1140" y="167" width="49" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1abzpsm_di" bpmnElement="Flow_1abzpsm">
         <di:waypoint x="780" y="185" />
-        <di:waypoint x="995" y="185" />
+        <di:waypoint x="1032" y="185" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

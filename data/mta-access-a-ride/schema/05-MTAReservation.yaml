@@ -17,8 +17,11 @@ attributes:
   - name: requestedTime
     type: LocalTime
     attributeConfigurations: []
-  - name: promiseTime
-    type: LocalDate
+  - name: anchor
+    type: String
+    attributeConfigurations: [ ]
+  - name: promiseTimeId
+    type: String
     attributeConfigurations: []
   - name: status
     type: String
