@@ -5,199 +5,201 @@ transactionDefinitionKey: MTALocation
 configurationSchema: formio
 configuration:
   components:
-  - key: descriptionData
-    type: panel
-    input: true
-    props:
-      label: Location Name
-    title: Location Name
-    components:
-      - key: name
-        type: nuverialTextInput
-        input: true
-        props:
-          type: text
-          label: Location Name
-          required: true
-        className: flex-half
-  - key: civicData
-    type: panel
-    input: true
-    label: Page 2
-    props:
-      label: Civic Location
-    title: Civic Location
-    components:
-      - key: address
-        type: nuverialAddress
-        input: true
-        props:
-          label: Address
-        className: flex-full
-        components:
-          - key: address.addressLine1
-            input: true
-            props:
-              label: Address Line 1
-              required: true
-              componentId: addressLine1
-          - key: address.addressLine2
-            input: true
-            props:
-              label: Address Line 2 (optional)
-              componentId: addressLine2
-          - key: address.city
-            input: true
-            props:
-              label: City
-              required: true
-              componentId: city
-          - key: address.stateCode
-            input: true
-            props:
-              label: State
-              required: true
-              componentId: stateCode
-              selectOptions:
-                - key: AL
-                  displayTextValue: Alabama
-                - key: AK
-                  displayTextValue: Alaska
-                - key: AS
-                  displayTextValue: American Samoa
-                - key: AZ
-                  displayTextValue: Arizona
-                - key: AR
-                  displayTextValue: Arkansas
-                - key: CA
-                  displayTextValue: California
-                - key: CO
-                  displayTextValue: Colorado
-                - key: CT
-                  displayTextValue: Connecticut
-                - key: DE
-                  displayTextValue: Delaware
-                - key: DC
-                  displayTextValue: District Of Columbia
-                - key: FM
-                  displayTextValue: Federated States Of Micronesia
-                - key: FL
-                  displayTextValue: Florida
-                - key: GA
-                  displayTextValue: Georgia
-                - key: GU
-                  displayTextValue: Guam
-                - key: HI
-                  displayTextValue: Hawaii
-                - key: ID
-                  displayTextValue: Idaho
-                - key: IL
-                  displayTextValue: Illinois
-                - key: IN
-                  displayTextValue: Indiana
-                - key: IA
-                  displayTextValue: Iowa
-                - key: KS
-                  displayTextValue: Kansas
-                - key: KY
-                  displayTextValue: Kentucky
-                - key: LA
-                  displayTextValue: Louisiana
-                - key: ME
-                  displayTextValue: Maine
-                - key: MH
-                  displayTextValue: Marshall Islands
-                - key: MD
-                  displayTextValue: Maryland
-                - key: MA
-                  displayTextValue: Massachusetts
-                - key: MI
-                  displayTextValue: Michigan
-                - key: MN
-                  displayTextValue: Minnesota
-                - key: MS
-                  displayTextValue: Mississippi
-                - key: MO
-                  displayTextValue: Missouri
-                - key: MT
-                  displayTextValue: Montana
-                - key: NE
-                  displayTextValue: Nebraska
-                - key: NV
-                  displayTextValue: Nevada
-                - key: NH
-                  displayTextValue: New Hampshire
-                - key: NJ
-                  displayTextValue: New Jersey
-                - key: NM
-                  displayTextValue: New Mexico
-                - key: NY
-                  displayTextValue: New York
-                - key: NC
-                  displayTextValue: North Carolina
-                - key: ND
-                  displayTextValue: North Dakota
-                - key: MP
-                  displayTextValue: Northern Mariana Islands
-                - key: OH
-                  displayTextValue: Ohio
-                - key: OK
-                  displayTextValue: Oklahoma
-                - key: OR
-                  displayTextValue: Oregon
-                - key: PW
-                  displayTextValue: Palau
-                - key: PA
-                  displayTextValue: Pennsylvania
-                - key: PR
-                  displayTextValue: Puerto Rico
-                - key: RI
-                  displayTextValue: Rhode Island
-                - key: SC
-                  displayTextValue: South Carolina
-                - key: SD
-                  displayTextValue: South Dakota
-                - key: TN
-                  displayTextValue: Tennessee
-                - key: TX
-                  displayTextValue: Texas
-                - key: UT
-                  displayTextValue: Utah
-                - key: VT
-                  displayTextValue: Vermont
-                - key: VI
-                  displayTextValue: Virgin Islands
-                - key: VA
-                  displayTextValue: Virginia
-                - key: WA
-                  displayTextValue: Washington
-                - key: WV
-                  displayTextValue: West Virginia
-                - key: WI
-                  displayTextValue: Wisconsin
-                - key: WY
-                  displayTextValue: Wyoming
-          - key: address.postalCode
-            input: true
-            props:
-              label: Zip Code
-              required: true
-              componentId: postalCode
-          - key: address.postalCodeExtension
-            input: true
-            props:
-              label: Ext. (Optional)
-              componentId: postalCodeExtension
-          - key: address.countryCode
-            input: true
-            props:
-              label: Country
-              required: true
-              componentId: countryCode
-              selectOptions:
-                - key: US
-                  displayTextValue: United States
-                - key: CA
-                  displayTextValue: Canada
-                - key: MX
-                  displayTextValue: Mexico
+    - key: descriptionData
+      type: panel
+      input: true
+      props:
+        label: Location Name
+      title: Location Name
+      components:
+        - key: name
+          type: nuverialTextInput
+          input: true
+          props:
+            type: text
+            label: Location Name
+            required: true
+          className: flex-half
+    - key: civicData
+      type: panel
+      input: true
+      label: Page 2
+      props:
+        label: Civic Location
+      title: Civic Location
+      components:
+        - props:
+            label: Address
+            addressValidationEnabled: true
+          className: flex-full
+          components:
+            - key: address.addressLine1
+              input: true
+              props:
+                label: Address Line 1
+                required: true
+                componentId: addressLine1
+            - key: address.addressLine2
+              input: true
+              props:
+                label: Address Line 2 (optional)
+                componentId: addressLine2
+            - key: address.city
+              input: true
+              props:
+                label: City
+                required: true
+                componentId: city
+            - key: address.stateCode
+              input: true
+              props:
+                label: State
+                required: true
+                componentId: stateCode
+                selectOptions:
+                  - key: AL
+                    displayTextValue: Alabama
+                  - key: AK
+                    displayTextValue: Alaska
+                  - key: AS
+                    displayTextValue: American Samoa
+                  - key: AZ
+                    displayTextValue: Arizona
+                  - key: AR
+                    displayTextValue: Arkansas
+                  - key: CA
+                    displayTextValue: California
+                  - key: CO
+                    displayTextValue: Colorado
+                  - key: CT
+                    displayTextValue: Connecticut
+                  - key: DE
+                    displayTextValue: Delaware
+                  - key: DC
+                    displayTextValue: District Of Columbia
+                  - key: FM
+                    displayTextValue: Federated States Of Micronesia
+                  - key: FL
+                    displayTextValue: Florida
+                  - key: GA
+                    displayTextValue: Georgia
+                  - key: GU
+                    displayTextValue: Guam
+                  - key: HI
+                    displayTextValue: Hawaii
+                  - key: ID
+                    displayTextValue: Idaho
+                  - key: IL
+                    displayTextValue: Illinois
+                  - key: IN
+                    displayTextValue: Indiana
+                  - key: IA
+                    displayTextValue: Iowa
+                  - key: KS
+                    displayTextValue: Kansas
+                  - key: KY
+                    displayTextValue: Kentucky
+                  - key: LA
+                    displayTextValue: Louisiana
+                  - key: ME
+                    displayTextValue: Maine
+                  - key: MH
+                    displayTextValue: Marshall Islands
+                  - key: MD
+                    displayTextValue: Maryland
+                  - key: MA
+                    displayTextValue: Massachusetts
+                  - key: MI
+                    displayTextValue: Michigan
+                  - key: MN
+                    displayTextValue: Minnesota
+                  - key: MS
+                    displayTextValue: Mississippi
+                  - key: MO
+                    displayTextValue: Missouri
+                  - key: MT
+                    displayTextValue: Montana
+                  - key: NE
+                    displayTextValue: Nebraska
+                  - key: NV
+                    displayTextValue: Nevada
+                  - key: NH
+                    displayTextValue: New Hampshire
+                  - key: NJ
+                    displayTextValue: New Jersey
+                  - key: NM
+                    displayTextValue: New Mexico
+                  - key: NY
+                    displayTextValue: New York
+                  - key: NC
+                    displayTextValue: North Carolina
+                  - key: ND
+                    displayTextValue: North Dakota
+                  - key: MP
+                    displayTextValue: Northern Mariana Islands
+                  - key: OH
+                    displayTextValue: Ohio
+                  - key: OK
+                    displayTextValue: Oklahoma
+                  - key: OR
+                    displayTextValue: Oregon
+                  - key: PW
+                    displayTextValue: Palau
+                  - key: PA
+                    displayTextValue: Pennsylvania
+                  - key: PR
+                    displayTextValue: Puerto Rico
+                  - key: RI
+                    displayTextValue: Rhode Island
+                  - key: SC
+                    displayTextValue: South Carolina
+                  - key: SD
+                    displayTextValue: South Dakota
+                  - key: TN
+                    displayTextValue: Tennessee
+                  - key: TX
+                    displayTextValue: Texas
+                  - key: UT
+                    displayTextValue: Utah
+                  - key: VT
+                    displayTextValue: Vermont
+                  - key: VI
+                    displayTextValue: Virgin Islands
+                  - key: VA
+                    displayTextValue: Virginia
+                  - key: WA
+                    displayTextValue: Washington
+                  - key: WV
+                    displayTextValue: West Virginia
+                  - key: WI
+                    displayTextValue: Wisconsin
+                  - key: WY
+                    displayTextValue: Wyoming
+            - key: address.postalCode
+              input: true
+              props:
+                label: Zip Code
+                required: true
+                componentId: postalCode
+            - key: address.postalCodeExtension
+              input: true
+              props:
+                label: Ext. (Optional)
+                componentId: postalCodeExtension
+            - key: address.countryCode
+              input: true
+              props:
+                label: Country
+                required: true
+                componentId: countryCode
+                selectOptions:
+                  - key: US
+                    displayTextValue: United States
+                  - key: CA
+                    displayTextValue: Canada
+                  - key: MX
+                    displayTextValue: Mexico
+          key: address
+          type: nuverialAddress
+          input: true
+
