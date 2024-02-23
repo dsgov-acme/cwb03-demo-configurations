@@ -51,7 +51,7 @@ configuration:
           validators:
             validation:
               - email
-        - key: rider.ambSeats
+        - key: rider.accommodations.ambSeats
           type: nuverialRadioCards
           input: true
           props:
@@ -65,7 +65,7 @@ configuration:
             required: true
             colorTheme: primary
           className: flex-full
-        - key: rider.wcSeats
+        - key: rider.accommodations.wcSeats
           type: nuverialRadioCards
           input: true
           props:
@@ -79,7 +79,7 @@ configuration:
             required: true
             colorTheme: primary
           className: flex-full
-        - key: rider.numCompanion
+        - key: rider.accommodations.numCompanion
           type: nuverialTextInput
           input: true
           props:

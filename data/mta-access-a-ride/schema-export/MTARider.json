@@ -37,9 +37,43 @@
     },
     {
       "constraints": [],
-      "name": "currentAddress",
+      "name": "language",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "gender",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "emergencyContact",
       "type": "DynamicEntity",
-      "entitySchema": "CommonAddress"
+      "entitySchema": "MTAEmergencyContact"
+    },
+    {
+      "constraints": [],
+      "name": "primaryPickupAddress",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    },
+    {
+      "constraints": [],
+      "name": "homeAddress",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    },
+    {
+      "constraints": [],
+      "name": "alternateAddress",
+      "type": "DynamicEntity",
+      "entitySchema": "MTALocation"
+    },
+    {
+      "constraints": [],
+      "name": "communicationPreferences",
+      "type": "List",
+      "contentType": "String"
     },
     {
       "constraints": [],
@@ -50,33 +84,22 @@
     },
     {
       "constraints": [],
-      "name": "numCompanion",
-      "type": "Integer"
+      "name": "paymentMethods",
+      "type": "List",
+      "entitySchema": "MTAPaymentMethod",
+      "contentType": "DynamicEntity"
     },
     {
       "constraints": [],
-      "name": "numPca",
-      "type": "Integer"
+      "name": "rideTypes",
+      "type": "List",
+      "contentType": "String"
     },
     {
       "constraints": [],
-      "name": "numServiceAnimal",
-      "type": "Integer"
-    },
-    {
-      "constraints": [],
-      "name": "ambSeats",
-      "type": "Boolean"
-    },
-    {
-      "constraints": [],
-      "name": "wcSeats",
-      "type": "Boolean"
-    },
-    {
-      "constraints": [],
-      "name": "wideSeats",
-      "type": "Boolean"
+      "name": "accommodations",
+      "type": "DynamicEntity",
+      "entitySchema": "MTARiderAccommodations"
     }
   ]
 }

@@ -1,0 +1,6 @@
+key: MTAPaymentMethod
+name: MTA Payment Method
+attributes:
+  - name: type
+    type: String
+    attributeConfigurations: []

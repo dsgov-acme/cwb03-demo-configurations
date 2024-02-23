@@ -52,7 +52,8 @@ public class Application {
                     "email-layout",
                     "message-template",
                     "transaction-definition-set",
-                    "transaction-definition-set-order");
+                    "transaction-definition-set-order",
+                    "record-definition");
 
     /**
      * Java main method.

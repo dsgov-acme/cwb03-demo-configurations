@@ -1,0 +1,19 @@
+key: MTAPersonalCareAttendant
+name: MTA Personal Care Attendant
+attributes:
+  - name: firstName
+    type: String
+    attributeConfigurations: []
+  - name: lastName
+    type: String
+    attributeConfigurations: []
+  - name: phone
+    type: String
+    attributeConfigurations: []
+  - name: shareTripDetails
+    type: Boolean
+    attributeConfigurations: []
+computedAttributes:
+  - name: fullName
+    type: String
+    expression: "#concat(\" \", firstName, lastName)"
