@@ -1,0 +1,29 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "firstName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "lastName",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "relationship",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "phone",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "shareTripDetails",
+      "type": "Boolean"
+    }
+  ]
+}

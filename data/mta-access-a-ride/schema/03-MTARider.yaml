@@ -22,35 +22,49 @@ attributes:
   - name: phone
     type: String
     attributeConfigurations: []
-  - name: currentAddress
+  - name: language
+    type: String
+    attributeConfigurations: []
+  - name: gender
+    type: String
+    attributeConfigurations: []
+  - name: emergencyContact
     type: DynamicEntity
-    entitySchema: CommonAddress
+    entitySchema: MTAEmergencyContact
+    attributeConfigurations: []
+  - name: primaryPickupAddress
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: []
+  - name: homeAddress
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: []
+  - name: alternateAddress
+    type: DynamicEntity
+    entitySchema: MTALocation
+    attributeConfigurations: []
+  - name: communicationPreferences
+    type: List
+    contentType: String
     attributeConfigurations: []
   - name: savedLocations
     type: List
     entitySchema: MTALocation
     contentType: DynamicEntity
     attributeConfigurations: []
-  - name: numCompanion
-    type: Integer
+  - name: paymentMethods
+    type: List
+    entitySchema: MTAPaymentMethod
+    contentType: DynamicEntity
     attributeConfigurations: []
-  - name: pcaRequired
-    type: Boolean
+  - name: rideTypes
+    type: List
+    contentType: String
     attributeConfigurations: []
-  - name: pcaName
-    type: String
-    attributeConfigurations: []
-  - name: serviceAnimalRequired
-    type: Boolean
-    attributeConfigurations: []
-  - name: ambSeats
-    type: Boolean
-    attributeConfigurations: []
-  - name: wcSeats
-    type: Boolean
-    attributeConfigurations: []
-  - name: wideSeats
-    type: Boolean
+  - name: accommodations
+    type: DynamicEntity
+    entitySchema: MTARiderAccommodations
     attributeConfigurations: []
 computedAttributes:
   - name: fullName

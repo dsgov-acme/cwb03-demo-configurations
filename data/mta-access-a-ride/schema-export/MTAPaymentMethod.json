@@ -1,0 +1,9 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "type",
+      "type": "String"
+    }
+  ]
+}

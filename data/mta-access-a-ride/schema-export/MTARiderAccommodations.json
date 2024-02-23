@@ -1,0 +1,67 @@
+{
+  "attributes": [
+    {
+      "constraints": [],
+      "name": "fareType",
+      "type": "String"
+    },
+    {
+      "constraints": [],
+      "name": "numCompanion",
+      "type": "Integer"
+    },
+    {
+      "constraints": [],
+      "name": "pcaRequired",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "personalCareAttendant",
+      "type": "DynamicEntity",
+      "entitySchema": "MTAPersonalCareAttendant"
+    },
+    {
+      "constraints": [],
+      "name": "interpreterNeeded",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "serviceAnimalRequired",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "travelTraining",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "ambSeats",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "wcSeats",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "wideSeats",
+      "type": "Boolean"
+    },
+    {
+      "constraints": [],
+      "name": "disabilities",
+      "type": "List",
+      "contentType": "String"
+    },
+    {
+      "constraints": [],
+      "name": "mobilityDevices",
+      "type": "List",
+      "contentType": "String"
+    }
+  ]
+}

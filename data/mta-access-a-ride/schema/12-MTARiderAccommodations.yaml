@@ -1,0 +1,43 @@
+key: MTARiderAccommodations
+name: MTA Rider Accommodations
+attributes:
+  - name: fareType
+    type: String
+    attributeConfigurations: []
+  - name: numCompanion
+    type: Integer
+    attributeConfigurations: []
+  - name: pcaRequired
+    type: Boolean
+    attributeConfigurations: []
+  - name: personalCareAttendant
+    type: DynamicEntity
+    entitySchema: MTAPersonalCareAttendant
+    attributeConfigurations: []
+  - name: interpreterNeeded
+    type: Boolean
+    attributeConfigurations: []
+  - name: serviceAnimalRequired
+    type: Boolean
+    attributeConfigurations: []
+  - name: travelTraining
+    type: Boolean
+    attributeConfigurations: []
+  - name: ambSeats
+    type: Boolean
+    attributeConfigurations: []
+  - name: wcSeats
+    type: Boolean
+    attributeConfigurations: []
+  - name: wideSeats
+    type: Boolean
+    attributeConfigurations: []
+  - name: disabilities
+    type: List
+    contentType: String
+    attributeConfigurations: []
+  - name: mobilityDevices
+    type: List
+    contentType: String
+    attributeConfigurations: []
+    

@@ -1,0 +1,22 @@
+key: MTAEmergencyContact
+name: MTA Emergency Contact
+attributes:
+  - name: firstName
+    type: String
+    attributeConfigurations: []
+  - name: lastName
+    type: String
+    attributeConfigurations: []
+  - name: relationship
+    type: String
+    attributeConfigurations: []
+  - name: phone
+    type: String
+    attributeConfigurations: []
+  - name: shareTripDetails
+    type: Boolean
+    attributeConfigurations: []
+computedAttributes:
+  - name: fullName
+    type: String
+    expression: "#concat(\" \", firstName, lastName)"
