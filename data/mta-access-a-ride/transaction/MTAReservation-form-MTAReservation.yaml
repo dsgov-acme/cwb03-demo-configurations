@@ -121,9 +121,9 @@ configuration:
             label: Promise times can be determined by drop-off or pick-up time
             answers:
               - title: Pick-up by
-                value: pickup
+                value: PICKUP
               - title: Drop-off by
-                value: dropoff
+                value: DROPOFF
             required: true
             colorTheme: primary
           className: flex-full
@@ -137,24 +137,24 @@ configuration:
             colorTheme: primary
             validationType: absolute
           className: flex-half
-        - props:
-            label: Time
-            placeholder: '14:15'
+        - key: requestedTime
+          type: nuverialTextInput
+          input: true
+          props:
             type: text
-            required: true
+            label: Time
             pattern: "([0-1]?[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$"
-            minLength: 3
+            required: true
             maxLength: 8
+            minLength: 3
+            placeholder: '14:15'
           className: flex-half
           validation:
             messages:
-              required: Requested time must be in the format HH:MM
-              minLength: Requested time must be in the format HH:MM
-              maxLength: Requested time must be in the format HH:MM
               pattern: Requested time must be in the format HH:MM
-          key: requestedTime
-          type: nuverialTextInput
-          input: true
+              required: Requested time must be in the format HH:MM
+              maxLength: Requested time must be in the format HH:MM
+              minLength: Requested time must be in the format HH:MM
         - key: pickLocation.locationType
           type: nuverialRadioCards
           input: true
@@ -343,6 +343,13 @@ configuration:
                     displayTextValue: Canada
                   - key: MX
                     displayTextValue: Mexico
+            - key: pickLocation.placeId
+              hide: true
+              input: true
+              props:
+                label: Place ID
+                hidden: true
+                componentId: gbpPlacesId
           expressions:
             hide: model?.pickLocation?.locationType !== 'CUSTOM_LOCATION'
         - key: pickLocation.id
@@ -373,7 +380,7 @@ configuration:
           type: nuverialAddress
           input: true
           props:
-            label: Drop-Off Address
+            label: Address
             addressValidationEnabled: true
           className: flex-full
           components:
@@ -543,6 +550,13 @@ configuration:
                     displayTextValue: Canada
                   - key: MX
                     displayTextValue: Mexico
+            - key: dropLocation.placeId
+              hide: true
+              input: true
+              props:
+                label: Place ID
+                hidden: true
+                componentId: gbpPlacesId
           expressions:
             hide: model?.dropLocation?.locationType !== 'CUSTOM_LOCATION'
         - key: dropLocation.id
@@ -560,17 +574,16 @@ configuration:
       type: panel
       input: true
       props:
-        label: Promise Times
-      title: Promise Times
+        label: Ride Options
+      title: Ride Options
       components:
         - key: promiseTimeId
           type: nuverialSelectPromiseTime
           input: true
           props:
             cols: 2
-            label: Select Promise Time
+            label: Choose a Ride
             required: true
             colorTheme: primary
           className: flex-full
-
 
