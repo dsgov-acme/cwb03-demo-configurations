@@ -9,19 +9,19 @@ dashboardConfiguration:
   menuIcon: assignment
   columns:
     - columnLabel: Trip Id
-      attributePath: id
+      attributePath: externalId
       sortable: false
       displayFormat: null
     - columnLabel: Rider
-      attributePath: rider.data.fullName
+      attributePath: data.rider.fullName
       sortable: true
       displayFormat: null
-    - columnLabel: Fare Type
-      attributePath: fareType
+    - columnLabel: Type
+      attributePath: data.tripType
       sortable: true
       displayFormat: null
-    - columnLabel: Promise Time
-      attributePath: promiseTime
+    - columnLabel: Date
+      attributePath: data.requestedDate
       sortable: true
       displayFormat: DATETIME
     - columnLabel: Status
