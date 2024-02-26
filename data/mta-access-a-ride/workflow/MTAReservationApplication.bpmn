@@ -7,7 +7,6 @@
     <bpmn:laneSet id="LaneSet_0aw3i2v">
       <bpmn:lane id="Lane_1y1d710">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EnterPersonalInfo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SelectPromiseTime</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EnterLocationInfo</bpmn:flowNodeRef>
       </bpmn:lane>
@@ -15,21 +14,10 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0kr5mfl</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="EnterPersonalInfo" name="Enter personal identification details">
-      <bpmn:extensionElements>
-        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
-        <camunda:properties>
-          <camunda:property name="status" value="Draft" />
-        </camunda:properties>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0kr5mfl</bpmn:incoming>
-      <bpmn:outgoing>Flow_08s2w5j</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_0kr5mfl" sourceRef="StartEvent_1" targetRef="EnterPersonalInfo" />
-    <bpmn:sequenceFlow id="Flow_08s2w5j" sourceRef="EnterPersonalInfo" targetRef="EnterLocationInfo" />
+    <bpmn:sequenceFlow id="Flow_0kr5mfl" sourceRef="StartEvent_1" targetRef="EnterLocationInfo" />
     <bpmn:userTask id="SelectPromiseTime" name="Select Promise Time">
       <bpmn:extensionElements>
-        <camunda:executionListener class="io.nuvalence.workmanager.service.service.TransactionStatusUpdateDelegate" event="start" />
+        <camunda:executionListener class="io.nuvalence.workmanager.service.service.RideConfirmationDelegate" event="start" />
         <camunda:properties>
           <camunda:property name="status" value="Confirmed" />
         </camunda:properties>
@@ -44,7 +32,7 @@
           <camunda:property name="status" value="Draft" />
         </camunda:properties>
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_08s2w5j</bpmn:incoming>
+      <bpmn:incoming>Flow_0kr5mfl</bpmn:incoming>
       <bpmn:outgoing>Flow_040bp0e</bpmn:outgoing>
     </bpmn:userTask>
   </bpmn:process>
@@ -62,10 +50,6 @@
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="232" y="167" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1imnv1j_di" bpmnElement="EnterPersonalInfo">
-        <dc:Bounds x="320" y="145" width="100" height="80" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1vw1ge9_di" bpmnElement="SelectPromiseTime">
         <dc:Bounds x="890" y="145" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -75,10 +59,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0kr5mfl_di" bpmnElement="Flow_0kr5mfl">
         <di:waypoint x="268" y="185" />
-        <di:waypoint x="320" y="185" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_08s2w5j_di" bpmnElement="Flow_08s2w5j">
-        <di:waypoint x="420" y="185" />
         <di:waypoint x="590" y="185" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_040bp0e_di" bpmnElement="Flow_040bp0e">
