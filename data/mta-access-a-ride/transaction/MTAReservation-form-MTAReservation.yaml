@@ -12,45 +12,6 @@ configuration:
         label: Rider Details
       title: Rider Details
       components:
-        - key: rider.firstName
-          type: nuverialTextInput
-          input: true
-          props:
-            type: text
-            label: First Name
-            required: true
-            autocomplete: given-name
-          className: flex-half
-        - key: rider.lastName
-          type: nuverialTextInput
-          input: true
-          props:
-            type: text
-            label: Last Name
-            required: true
-            autocomplete: family-name
-          className: flex-half
-        - key: rider.phone
-          type: nuverialTextInput
-          input: true
-          props:
-            type: text
-            label: Phone
-            required: true
-            autocomplete: tel
-          className: flex-half
-        - key: rider.email
-          type: nuverialTextInput
-          input: true
-          props:
-            type: email
-            label: Email
-            required: true
-            autocomplete: email
-          className: flex-half
-          validators:
-            validation:
-              - email
         - key: rider.accommodations.ambSeats
           type: nuverialRadioCards
           input: true
