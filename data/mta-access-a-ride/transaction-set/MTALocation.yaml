@@ -33,3 +33,5 @@ dashboardConfiguration:
       displayFormat: null
   tabs:
     - tabLabel: All
+      filter:
+        status: 'Completed'

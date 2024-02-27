@@ -29,10 +29,9 @@ dashboardConfiguration:
       sortable: true
       displayFormat: null
   tabs:
-    - tabLabel: All
     - tabLabel: Scheduled Rides
       filter:
-        status: 'Confirmed'
+        status: 'CONFIRMED'
     - tabLabel: Pending Rides
       filter:
         status: 'Draft'
