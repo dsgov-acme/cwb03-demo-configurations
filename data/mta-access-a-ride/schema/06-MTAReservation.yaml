@@ -14,14 +14,14 @@ attributes:
   - name: requestedDate
     type: LocalDate
     attributeConfigurations: []
+  - name: requestedTime
+    type: LocalTime
+    attributeConfigurations: []
   - name: promiseTime
     type: DynamicEntity
     entitySchema: MTAPromiseTime
     attributeConfigurations: []
   - name: anchor
-    type: String
-    attributeConfigurations: []
-  - name: promiseTimeId
     type: String
     attributeConfigurations: []
   - name: status
