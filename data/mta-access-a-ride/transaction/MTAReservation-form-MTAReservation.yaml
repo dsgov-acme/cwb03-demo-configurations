@@ -538,7 +538,7 @@ configuration:
         label: Ride Options
       title: Ride Options
       components:
-        - key: promiseTimeId
+        - key: promiseTime.id
           type: nuverialSelectPromiseTime
           input: true
           props:
