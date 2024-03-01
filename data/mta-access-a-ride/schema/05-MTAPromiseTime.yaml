@@ -1,0 +1,15 @@
+key: MTAPromiseTime
+name: MTA Promise Time
+attributes:
+  - name: id
+    type: String
+    attributeConfigurations: []
+  - name: pickupTime
+    type: Integer
+    attributeConfigurations: []
+  - name: dropTime
+    type: Integer
+    attributeConfigurations: []
+  - name: route
+    type: String
+    attributeConfigurations: []
